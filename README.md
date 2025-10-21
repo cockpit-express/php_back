@@ -14,6 +14,7 @@ Regénération auto load
 ## Libraries
 
 `illuminate/database` (Eloquent ORM)
+`vlucas/phpdotenv`
 
 ## SQL
 
@@ -28,13 +29,13 @@ CREATE TABLE stations (
 
 ## Structure
 
-
 ```
 saews303d
 ├─ bootstrap.php
 ├─ composer.json
 ├─ composer.lock
 ├─ public
+│  ├─ .htaccess
 │  ├─ assets
 │  │  ├─ css
 │  │  │  ├─ style.css
@@ -47,13 +48,16 @@ saews303d
 │  │     └─ script.js
 │  └─ index.php
 └─ src
+   ├─ controller
+   │  └─ StationController.php
    ├─ core
+   │  ├─ Router.php
+   │  └─ routes.php
    ├─ model
    │  └─ Station.php
    ├─ pages
    │  ├─ cockpit.php
-   │  ├─ home.php
-   │  └─ layout.php
+   │  └─ home.php
    ├─ repository
    │  └─ StationRepository.php
    └─ scss
