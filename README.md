@@ -1,10 +1,27 @@
 # SAE WS303D
 
-Run SASS : `sass --watch dossierSCSS:dossierCSS`
+## Help
 
-Variable PHP Xampp
-`export PATH="/Applications/XAMPP/xamppfiles/bin:$PATH"`
-`source ~/.zshrc`
+Run SASS : `sass --watch dossierSCSS:dossierCSS`  
 
-Libraries
+Variable PHP Xampp  
+`export PATH="/Applications/XAMPP/xamppfiles/bin:$PATH"`  
+`source ~/.zshrc`  
+
+Regénération auto load
+`composer dump-autoload`
+
+## Libraries
+
 `illuminate/database` (Eloquent ORM)
+
+## SQL
+
+```
+CREATE TABLE stations (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  latitude DOUBLE NOT NULL,
+  longitude DOUBLE NOT NULL
+);
+```

@@ -8,7 +8,7 @@
   </head>
 
   <body>
-    <?php include __DIR__ . '/cockpit.php' ?>
+    <?php include __DIR__ . '/home.php' ?>
 
     <script src="./assets/js/script.js"></script>
   </body>

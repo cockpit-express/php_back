@@ -1,6 +1,0 @@
-CREATE TABLE stations (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(255) NOT NULL,
-  latitude DOUBLE NOT NULL,
-  longitude DOUBLE NOT NULL
-);
