@@ -19,7 +19,7 @@
 
   $router
     ->get('/api/stations', function() use ($controllers) {
-      require_once $controllers . 'StationController.php'; 
+      require_once "{$controllers}StationController.php"; 
       \Controller\StationController::getAll();
     });
 
