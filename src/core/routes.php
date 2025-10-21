@@ -1,0 +1,26 @@
+<?php
+  require_once __DIR__ . '/../core/Router.php';
+
+  use Core\Router;
+
+  $router = new Router();
+
+  $pages = __DIR__ . '/../pages/';
+  $controllers = __DIR__ . '/../controller/';
+
+  // Pages
+
+  $router
+    ->get('/', fn() => require "{$pages}home.php")
+    ->get('/home', fn() => require "{$pages}home.php")
+    ->get('/cockpit', fn() => require "{$pages}cockpit.php");
+
+  // API REST
+
+  $router
+    ->get('/api/stations', function() use ($controllers) {
+      require_once $controllers . 'StationController.php'; 
+      \Controller\StationController::getAll();
+    });
+
+  return $router;

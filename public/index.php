@@ -7,5 +7,7 @@
   
   require __DIR__ . '/../vendor/autoload.php';
   require __DIR__ . '/../bootstrap.php';
+  require_once __DIR__ . '/../src/core/Router.php';
   
-  require_once '../src/pages/layout.php';
+  $router = require __DIR__ . '/../src/core/routes.php';
+  $router->dispatch();
