@@ -29,17 +29,17 @@ CREATE TABLE stations (
   name VARCHAR(255) NOT NULL,
   latitude DOUBLE NOT NULL,
   longitude DOUBLE NOT NULL,
-  postal_code VARCHAR(255) NOT NULL
+  postal_code VARCHAR(255) NULL
 );
 
 CREATE TABLE places (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name TEXT NOT NULL,
   type VARCHAR(255),
-  label VARCHAR(255),
-  postal_code VARCHAR(255),
-  city VARCHAR(255),
-  address TEXT,
+  label VARCHAR(255) NULL,
+  postal_code VARCHAR(255) NULL,
+  city VARCHAR(255) NULL,
+  address TEXT NULL,
   latitude DOUBLE NOT NULL,
   longitude DOUBLE NOT NULL
 );

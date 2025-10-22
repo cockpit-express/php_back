@@ -5,12 +5,13 @@
 
   class StationController {
     public static function getMany(): void { 
-      $defaultLimit = 100;
+      $defaultLimit = 2762;
+      $maxlimit = 2762;
       $limit = isset($_GET['limit']) ? (int) $_GET['limit'] : $defaultLimit;
       $lat = isset($_GET['lat']) ? (float) $_GET['lat'] : null;
       $lon = isset($_GET['lon']) ? (float) $_GET['lon'] : null;
 
-      if ($limit <= 0 || $limit > 250) $limit = $defaultLimit;
+      if ($limit <= 0 || $limit > $maxlimit) $limit = $defaultLimit;
 
       $stations = StationRepository::getMany($limit, $lat, $lon);
 
