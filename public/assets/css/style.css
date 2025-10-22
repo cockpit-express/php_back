@@ -194,6 +194,74 @@ body {
   font-size: 0.9rem;
 }
 
+.datapage {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f5f7fb;
+  color: #222;
+}
+.datapage header, .datapage footer {
+  text-align: center;
+  background: #0b74d1;
+  color: #fff;
+  padding: 10px 0;
+}
+.datapage .controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background: #eef6ff;
+  border-bottom: 1px solid #d0e7ff;
+}
+.datapage .container {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  align-items: flex-start;
+}
+.datapage #map {
+  flex: 1 1 60%;
+  height: 640px;
+  border-radius: 8px;
+  border: 2px solid #0b74d1;
+  overflow: hidden;
+}
+.datapage #charts {
+  flex: 0 1 35%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.datapage .chartBox {
+  background: #fff;
+  border-radius: 8px;
+  border: 2px solid #0b74d1;
+  padding: 8px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.datapage .chartBox svg {
+  width: 100%;
+  height: 100%;
+}
+@media (max-width: 900px) {
+  .datapage .container {
+    flex-direction: column;
+  }
+  .datapage #map {
+    height: 480px;
+    width: 100%;
+  }
+  .datapage #charts {
+    width: 100%;
+  }
+}
+
 body {
   margin: 0px;
   min-width: 100vw;

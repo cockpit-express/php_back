@@ -12,7 +12,7 @@
       $lon = isset($_GET['lon']) ? (float) $_GET['lon'] : null;
       $radiusKm = isset($_GET['radiusKm']) ? (float) $_GET['radiusKm'] : null;
 
-      if ($limit <= 0 || $limit > 250) $limit = $defaultLimit;
+      if ($limit <= 0 || $limit > $maxLimit) $limit = $defaultLimit;
 
       $places = PlaceRepositry::getMany($limit, $lat, $lon, $radiusKm);
 
