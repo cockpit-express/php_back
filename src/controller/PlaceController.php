@@ -6,6 +6,7 @@
   class PlaceController {
     public static function getMany(): void { 
       $defaultLimit = 150;
+      $maxLimit = 600;
       $limit = isset($_GET['limit']) ? (int) $_GET['limit'] : $defaultLimit;
       $lat = isset($_GET['lat']) ? (float) $_GET['lat'] : null;
       $lon = isset($_GET['lon']) ? (float) $_GET['lon'] : null;
