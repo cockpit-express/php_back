@@ -15,7 +15,8 @@
     ->get('/home', fn() => require "{$pages}home.php")
     ->get('/cockpit', fn() => require "{$pages}cockpit.php")
     ->get('/test', fn() => require "{$pages}test.php")
-    ->get('/data', fn() => require "{$pages}data.php");
+    ->get('/data', fn() => require "{$pages}data.php")
+    ->get('/api', fn() => require "{$pages}api.php");
 
   // API REST
 
