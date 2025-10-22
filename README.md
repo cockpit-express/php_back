@@ -7,7 +7,7 @@
 
 ## Help
 
-Run SASS : `sass --watch dossierSCSS:dossierCSS`  
+Run SASS : `sass --watch src/scss:public/assets/css`  
 
 Variable PHP Xampp  
 `export PATH="/Applications/XAMPP/xamppfiles/bin:$PATH"`  
