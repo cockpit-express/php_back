@@ -5,10 +5,11 @@
 
   class Station extends Model {
     protected $table = 'stations';
-    public $timestamps = true;
+    public $timestamps = false;
     protected $fillable = [
-      'name' => 'string',
-      'latitude' => 'float',
-      'longitude' => 'float'
+      'name',      // string
+      'latitude',  // float
+      'longitude', // float
+      'city_code'  // int
     ];
   }
