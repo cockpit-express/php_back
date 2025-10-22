@@ -21,7 +21,11 @@
   $router
     ->get('/api/stations', function() use ($controllers) {
       require_once "{$controllers}StationController.php"; 
-      \Controller\StationController::getAll();
+      \Controller\StationController::getMany();
+    })
+    ->get('/api/stations/{id}', function($id) use ($controllers) {
+      require_once "{$controllers}StationController.php"; 
+      \Controller\StationController::getById($id);
     });
 
   return $router;

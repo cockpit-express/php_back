@@ -16,16 +16,22 @@ class Router {
 
   public function dispatch(): void {
     $method = $_SERVER['REQUEST_METHOD'];
-    $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-    $path = str_replace('/saews303d/public', '', $path); 
+    $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    $uri = str_replace('/saews303d/public', '', $uri);
 
-    $handler = $this->routes[$method][$path] ?? null;
+    foreach ($this->routes[$method] ?? [] as $path => $handler) {
 
-    if ($handler) {
-      call_user_func($handler);
-    } else {
-      http_response_code(404);
-      echo "404 — Page non trouvée";
+      $pattern = preg_replace('#\{[a-zA-Z_][a-zA-Z0-9_]*\}#', '([^/]+)', $path);
+      $pattern = "#^{$pattern}$#";
+
+      if (preg_match($pattern, $uri, $matches)) {
+        array_shift($matches);
+        call_user_func_array($handler, $matches);
+        return;
+      }
     }
+
+    http_response_code(404);
+    echo "404 - Page non trouvée";
   }
 }

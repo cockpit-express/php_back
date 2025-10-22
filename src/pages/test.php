@@ -3,4 +3,4 @@
 
   use Repository\StationRepository;
 
-  echo StationRepository::getAll();
+  echo StationRepository::getMany(5);
