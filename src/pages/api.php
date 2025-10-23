@@ -1,6 +1,6 @@
 <h1>📘 API Documentation</h1>
 <p>Format : UTF-8 JSON</p>
-<p>Demo : <a href="http://localhost/saews303d/public/api/places?lat=48.2973&lon=4.0744&radiusKm=5" target="_blank">les sites culturels à priximité de la gare SNCF de Troyes, dans un rayon de 5km.</a></p>
+<p>Demo : <a href="http://ws303d.mmi24c16.mmi-troyes.fr/api/places?lat=48.2973&lon=4.0744&radiusKm=5" target="_blank">les sites culturels à priximité de la gare SNCF de Troyes, dans un rayon de 5km.</a></p>
 <p>Ressources : <a href="https://github.com/cockpit-express" target="_blank">Github du projet</a></p>
 
 <h2>Stations (gares SNCF)</h2>
