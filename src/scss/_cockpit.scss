@@ -19,6 +19,43 @@ body {
     flex-direction: column; 
     justify-content: end;
     background-color: rgb(118, 166, 116);  
+    overflow: hidden;
+
+    .top {
+      height: 25px;
+      background-color: #5e5e64;
+    }
+
+    .sides-box {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      display: flex;
+      justify-content: space-between;
+
+      .side-box {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        display: flex;
+
+        &:last-child {
+          justify-content: end;
+        }
+
+        .slide-extra {
+          width: 1vw;
+          min-width: 15px;
+          background-color: #5e5e64;
+        }
+
+        .side-svg {
+          display: block;
+          fill: #5e5e64;
+          margin: -0.4px;
+        }
+      }
+    }
 
     .dashb-box {
       width: 100%;
@@ -29,7 +66,7 @@ body {
       left: 0;
 
       .minimap-box {
-        width: clamp(110px, 20%, 9999px);
+        width: clamp(130px, 18%, 9999px);
         aspect-ratio: 1.3/1;
         background-color: #5e5e64;
         position: absolute;
@@ -50,7 +87,7 @@ body {
       }
 
       svg {
-        width: 30%;
+        width: 25%;
         min-width: 200px;
         z-index: 1;
         .cls-1 { fill: #c43d3d; } .cls-2 { fill: #ccccd6; } .cls-3 { fill: #49494f; } .cls-4 { fill: #aaaab2; } .cls-5 { fill: #49494f; } .cls-6 { fill: #406dbf; }
@@ -58,13 +95,13 @@ body {
     }
 
     .dashb-back {
-      height: clamp(76px, 11.5vw, 9999px); 
+      min-height: clamp(76px, 9.5vw, 9999px); 
       background-color: #5e5e64;
     }
   }
 
   .extra-cockpit-height {
     background-color: #878791; 
-    height: clamp(0px, calc((750px - 100vw) * 0.3), 100px);
+    min-height: clamp(0px, calc((750px - 100vw) * 0.3), 100px);
   }
 }
