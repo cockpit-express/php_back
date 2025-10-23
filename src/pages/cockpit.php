@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Cockpit Express</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@1" rel="stylesheet" />
     <link rel="stylesheet" href="./assets/css/style.css">
   </head>
 
@@ -31,8 +32,14 @@
         </div>
 
         <div class="dashb-box">
-          <div class="minimap-box">
-            <div class="minimap"></div>
+          <div class="minimap-sub-box dashb-left-and-right">
+            <div class="minimap-box">
+              <span class="selector-map-icon material-symbols-outlined">arrow_selector_tool</span>
+
+              <div class="minimap">
+                <img src="./assets/images/illustrations/france_map_flat.svg" alt="carte_france_decorative">
+              </div>
+            </div>
           </div>
 
           <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 766.22 376.05">
