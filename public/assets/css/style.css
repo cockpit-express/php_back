@@ -497,6 +497,20 @@ body {
   min-height: 100vh;
 }
 
+.material-symbols-outlined {
+  cursor: pointer;
+}
+
+input {
+  background-color: transparent;
+  border: none;
+}
+
+input:focus {
+  border: none;
+  outline: none;
+}
+
 .cockpit-sec {
   width: 100%;
   height: 100vh;
@@ -512,6 +526,62 @@ body {
   justify-content: end;
   background-color: rgb(118, 166, 116);
   overflow: hidden;
+}
+.cockpit-sec .screen .map-sub-box {
+  position: absolute;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.2980392157);
+}
+.cockpit-sec .screen .map-sub-box .map-box {
+  position: relative;
+  width: clamp(370px, 50%, 9999px);
+  aspect-ratio: 1/1;
+  background-color: #fff;
+  border-radius: 10px;
+}
+.cockpit-sec .screen .map-sub-box .map-box .map-header {
+  position: absolute;
+  width: 100%;
+  top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+.cockpit-sec .screen .map-sub-box .map-box .map-header .map-header-left {
+  width: 77px;
+}
+.cockpit-sec .screen .map-sub-box .map-box .map-header .close-map {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1000px;
+  width: 57px;
+  color: #9898a3;
+  margin-right: 20px;
+}
+.cockpit-sec .screen .map-sub-box .map-box .map-header .map-search-box {
+  background-color: #f2f2f2;
+  display: flex;
+  align-items: center;
+  border-radius: 1000px;
+  padding: 8px 22px;
+  gap: 12px;
+}
+.cockpit-sec .screen .map-sub-box .map-box .map-header .map-search-box input {
+  font-size: 15px;
+  padding: 12px 5px 12px 0px;
+  width: 224px;
+}
+.cockpit-sec .screen .map-sub-box .map-box .map-header .map-search-box input::placeholder {
+  color: #9898a3;
+}
+.cockpit-sec .screen .map-sub-box .map-box .map-header .map-search-box span {
+  color: #9898a3;
+  font-size: 21px;
 }
 .cockpit-sec .screen .top {
   height: 25px;

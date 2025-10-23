@@ -11,6 +11,22 @@
   <body>
     <main class="cockpit-sec">
       <div class="screen">
+        <div class="map-sub-box" id="map-sub-box">
+          <div class="map-box" id="map-box">
+            <div class="map-header">
+              <span class="map-header-left"></span>
+              
+              <div class="map-search-box">
+                <span class="material-symbols-outlined">search</span>
+
+                <input type="text" name="station" id="stationInput" placeholder="Sélectionnez votre gare d'arrivée">
+              </div>
+
+              <span class="close-map material-symbols-outlined" id="close-map">close</span>
+            </div>
+          </div>
+        </div>
+
         <div class="top"></div>
 
         <div class="sides-box">
@@ -34,9 +50,9 @@
         <div class="dashb-box">
           <div class="minimap-sub-box dashb-left-and-right">
             <div class="minimap-box">
-              <span class="selector-map-icon material-symbols-outlined">arrow_selector_tool</span>
+              <span class="selector-map-icon map-open material-symbols-outlined">arrow_selector_tool</span>
 
-              <div class="minimap">
+              <div class="minimap map-open">
                 <img src="./assets/images/illustrations/france_map_flat.svg" alt="carte_france_decorative">
               </div>
             </div>
@@ -61,5 +77,7 @@
 
       <div class="extra-cockpit-height"></div>
     </main>
+
+    <script src="./assets/js/cockpit.js"></script>
   </body>
 </html>
