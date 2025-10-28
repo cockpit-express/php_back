@@ -4,8 +4,14 @@
     <meta charset="utf-8">
     <title>Cockpit Express</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@1" rel="stylesheet" />
     <link rel="stylesheet" href="./assets/css/style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@1" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+    <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
   </head>
 
   <body>
@@ -19,11 +25,13 @@
               <div class="map-search-box">
                 <span class="material-symbols-outlined">search</span>
 
-                <input type="text" name="station" id="stationInput" placeholder="Sélectionnez votre gare d'arrivée">
+                <input type="text" name="station" id="stationInput" placeholder="Gare d'arrivée">
               </div>
 
               <span class="close-map material-symbols-outlined" id="close-map">close</span>
             </div>
+
+            <div id="map"></div>
           </div>
         </div>
 

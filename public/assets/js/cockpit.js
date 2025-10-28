@@ -27,3 +27,37 @@ document.addEventListener('keydown', (e) => {
     mapSubBox.style.display = 'none'
   }
 })
+
+// Functions
+
+
+async function loadStations(map, markers) {
+  try {
+    const res = await fetch('http://localhost/saews303d/public/api/stations')
+    const stations = await res.json()
+
+    stations.forEach(s => {
+      markers.addLayer(L.marker([s.latitude, s.longitude]))
+    })
+    map.addLayer(markers)
+
+  } catch (error) {
+    console.error('Erreur lors du chargement des stations:', error)
+  }
+}
+
+// Map
+
+const map = L.map('map').setView([46.603354, 1.888334], 6)
+
+L.tileLayer('https://tile.thunderforest.com/pioneer/{z}/{x}/{y}.png?apikey=3459ca86e7404c7082ff1460541f46d0', {
+  maxZoom: 19,
+  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+  detectRetina: true
+}).addTo(map)
+
+const markers = L.markerClusterGroup({
+  showCoverageOnHover: false,
+})
+
+loadStations(map, markers)
