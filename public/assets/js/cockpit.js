@@ -37,12 +37,19 @@ async function loadStations(map, markers) {
     const stations = await res.json()
 
     stations.forEach(s => {
-      markers.addLayer(L.marker([s.latitude, s.longitude]))
+      const marker = L.marker([s.latitude, s.longitude])
+      marker.data = s
+
+      marker.bindPopup(`
+        <p>Gare de <b>${s.name}</b></p>
+        <button id="station-btn">S'y rendre</button>
+      `)
+      markers.addLayer(marker)
     })
     map.addLayer(markers)
 
   } catch (error) {
-    console.error('Erreur lors du chargement des stations:', error)
+    console.error('Error during stations fetch', error)
   }
 }
 
@@ -61,3 +68,17 @@ const markers = L.markerClusterGroup({
 })
 
 loadStations(map, markers)
+
+// Station
+
+markers.on('popupopen', async (e) => {
+  const popupNode = e.popup.getElement(); 
+  const stationBtn = popupNode.querySelector('#station-btn');
+
+  stationBtn.addEventListener('click', async () => {
+    stationData = e.popup._source.data
+
+    const res = await fetch(`http://localhost/saews303d/public/api/places?lat=${stationData.latitude}&lon=${stationData.longitude}&radiusKm=${'5'}`)
+    const places = await res.json()
+  })
+})

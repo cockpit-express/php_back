@@ -636,6 +636,11 @@ input:focus {
   outline: none;
 }
 
+button {
+  border: none;
+  cursor: pointer;
+}
+
 .map-sub-box {
   position: absolute;
   z-index: 3;
@@ -656,6 +661,13 @@ input:focus {
 .map-sub-box .map-box #map {
   width: 100%;
   height: 100%;
+  border-radius: 10px;
+}
+.map-sub-box .map-box #map .leaflet-popup button {
+  width: 100%;
+  background-color: #ff9641;
+  color: #fff;
+  padding: 10px;
   border-radius: 10px;
 }
 .map-sub-box .map-box #map .marker-cluster {
