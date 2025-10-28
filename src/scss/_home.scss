@@ -5,9 +5,9 @@ $accent-colour: #f2c200;
 $font‑base: 'Arial', sans‑serif;
 
 body {
-  font-family: 'FOLIOB', sans-serif !important;
+  // font-family: 'FOLIOB', sans-serif !important;
   margin: 0;
-  font-family: $font‑base;
+  // font-family: $font‑base;
   color: #333;
 }
 
@@ -20,11 +20,11 @@ body {
 }
 
 h3 {
-  font-family: 'FOLIOB';
+  // font-family: 'FOLIOB';
 color: gray;}
 
 h1 {
-  font-family: 'FOLIOB';
+  // font-family: 'FOLIOB';
 }
 
 .container {
@@ -242,7 +242,7 @@ $toggle-off: #e5e5ea;
 // Body thème jour/nuit
 body {
   margin: 0;
-  font-family: 'Arial', sans-serif;
+  // font-family: 'Arial', sans-serif;
   background-color: $day-bg;
   color: $day-text;
   transition: background-color 0.3s ease, color 0.3s ease;

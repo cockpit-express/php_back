@@ -1,9 +1,19 @@
+input {
+  background-color: transparent;
+  border: none;
+
+  &:focus {
+    border: none;
+    outline: none;
+  }
+}
+
 .map-sub-box {
   position: absolute;
   z-index: 3;
   width: 100%;
   height: 100%;
-  display: none; // toggle flex
+  display: flex; // toggle flex
   justify-content: center;
   align-items: center;
   background-color: #0000004c;
@@ -45,9 +55,9 @@
         gap: 12px;
 
         input {
-          font-size: 15px;
+          font-size: 14px;
           padding: 12px 5px 12px 0px;
-          width: 224px;
+          width: 107px;
 
           &::placeholder {
             color: #9898a3;

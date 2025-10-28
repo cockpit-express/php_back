@@ -1,3 +1,5 @@
+@use '_layout.scss';
+
 * { box-sizing: border-box; }
 
 body {
@@ -7,15 +9,6 @@ body {
 
 .material-symbols-outlined {
   cursor: pointer;
-}
-
-input {
-  background-color: transparent;
-  border: none;
-}
-input:focus {
-  border: none;
-  outline: none;
 }
 
 .cockpit-sec {
