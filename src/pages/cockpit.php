@@ -17,6 +17,10 @@
   <body>
     <main class="cockpit-sec">
       <div class="screen">
+        <div class="places-sub-box">
+          <div class="places-box" id="places-box"></div>
+        </div>
+
         <div class="map-sub-box" id="map-sub-box">
           <div class="map-box" id="map-box">
             <div class="map-header">

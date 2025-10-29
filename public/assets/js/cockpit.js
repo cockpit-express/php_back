@@ -2,6 +2,7 @@ const openMapBtns = document.querySelectorAll('.map-open')
 const closeMapBtn = document.getElementById('close-map')
 const mapBox = document.getElementById('map-box')
 const mapSubBox = document.getElementById('map-sub-box')
+const placesBox = document.getElementById('places-box')
 
 
 // Map : uuverture / fermeture (ESC, btn, en dehors) 
@@ -69,16 +70,45 @@ const markers = L.markerClusterGroup({
 
 loadStations(map, markers)
 
-// Station
+// Station popup
 
 markers.on('popupopen', async (e) => {
-  const popupNode = e.popup.getElement(); 
-  const stationBtn = popupNode.querySelector('#station-btn');
+  const popupNode = e.popup.getElement()
+  const stationBtn = popupNode.querySelector('#station-btn')
 
   stationBtn.addEventListener('click', async () => {
     stationData = e.popup._source.data
 
     const res = await fetch(`http://localhost/saews303d/public/api/places?lat=${stationData.latitude}&lon=${stationData.longitude}&radiusKm=${'5'}`)
     const places = await res.json()
+
+// Places list
+
+    // require('./temp.json').forEach(p => {
+    //   placesBox.innerHTML += `
+    //     <div>
+    //       <p>${p.name}</p>
+    //       <p>${p.city}</p>
+    //     </div>
+    //   `
+    // })
+  })
+})
+
+// TEMP
+
+fetch('./assets/js/temp.json').then(res => res.json()).then(places => {
+  places.forEach(p => {
+    const placeDiv = document.createElement('div')
+    placeDiv.classList.add('place-item')
+
+    placeDiv.innerHTML = `
+      <div>
+        <p class="place-name">${p.name}</p>
+        <p class="place-type">${p.type}</p>
+        <p class="place-city">${p.city}</p>
+      </div>
+    `
+    placesBox.appendChild(placeDiv)
   })
 })
