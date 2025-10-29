@@ -99,16 +99,20 @@ markers.on('popupopen', async (e) => {
 
 fetch('./assets/js/temp.json').then(res => res.json()).then(places => {
   places.forEach(p => {
-    const placeDiv = document.createElement('div')
-    placeDiv.classList.add('place-item')
-
-    placeDiv.innerHTML = `
-      <div>
-        <p class="place-name">${p.name}</p>
-        <p class="place-type">${p.type}</p>
-        <p class="place-city">${p.city}</p>
-      </div>
-    `
-    placesBox.appendChild(placeDiv)
+    
+    fetch(`https://commons.wikimedia.org/w/api.php?action=query&format=json&generator=search&gsrsearch=${p.name}-${p.city}&gsrnamespace=6&gsrlimit=1&prop=imageinfo&iiprop=url&origin=*`).then(res => res.json().then(wikiMediaRes => {
+      const placeDiv = document.createElement('div')
+      placeDiv.classList.add('place-item')
+// console.log(Object.values(wikiMediaRes.query.pages)[0].imageinfo[0].url)
+      placeDiv.innerHTML = `
+        <div>
+          <p class="place-name">${p.name}</p>
+          <p class="place-type">${p.type}</p>
+          <p class="place-city">${p.city}</p>
+          <img src="${Object.values(wikiMediaRes.query.pages)[0].imageinfo[0].url}" style="width: 200px;" />
+        </div>
+      `
+      placesBox.appendChild(placeDiv)
+    }))
   })
 })
