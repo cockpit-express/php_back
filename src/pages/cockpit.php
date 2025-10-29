@@ -38,11 +38,11 @@
         <div class="top"></div>
 
         <div class="windshield">
-          <div class="places-sub-box">
+          <div class="places-sub-box" id="places-sub-box">
             <div class="places-box" id="places-box"></div>
           </div>
 
-          <div class="sides-box">
+          <!-- <div class="sides-box">
             <div class="side-box">
               <div class="slide-extra"></div>
 
@@ -58,7 +58,7 @@
 
               <div class="slide-extra"></div>
             </div>
-          </div>
+          </div> -->
         </div>
 
         <div class="dashb-box">

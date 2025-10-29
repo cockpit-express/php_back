@@ -1,7 +1,9 @@
 const openMapBtns = document.querySelectorAll('.map-open')
 const closeMapBtn = document.getElementById('close-map')
 const mapSubBox = document.getElementById('map-sub-box')
+
 const placesBox = document.getElementById('places-box')
+const placesSubBox = document.getElementById('places-sub-box')
 
 
 // Map : ouverture / fermeture (ESC, btn, en dehors) 
@@ -34,16 +36,28 @@ openMapBtns.forEach(e => {
         const res = await fetch(`http://localhost/saews303d/public/api/places?lat=${stationData.latitude}&lon=${stationData.longitude}&radiusKm=${'5'}`)
         const places = await res.json()
 
-    // Places list
+        mapSubBox.style.display = 'none'
+        placesSubBox.style.height = '100%'
+        placesBox.innerHTML = ''
 
-        // require('./temp.json').forEach(p => {
-        //   placesBox.innerHTML += `
-        //     <div>
-        //       <p>${p.name}</p>
-        //       <p>${p.city}</p>
-        //     </div>
-        //   `
-        // })
+    // Places list
+        
+        places.forEach(p => {
+          fetch(`https://commons.wikimedia.org/w/api.php?action=query&format=json&generator=search&gsrsearch=${p.name}-${p.city}&gsrnamespace=6&gsrlimit=1&prop=imageinfo&iiprop=url&origin=*`).then(res => res.json().then(wikiMediaRes => {
+            const placeDiv = document.createElement('div')
+            placeDiv.classList.add('place-item')
+
+            placeDiv.innerHTML = `
+              <div>
+                <p class="place-name">${p.name}</p>
+                <p class="place-type">${p.type}</p>
+                <p class="place-city">${p.city}</p>
+                <img class="place-image" src="${Object.values(wikiMediaRes.query.pages)[0].imageinfo[0].url}" />
+              </div>
+            `
+            placesBox.appendChild(placeDiv)
+          }))
+        })
       })
     })
   })
@@ -95,25 +109,3 @@ async function loadStations(map, markers) {
 /* Déplacé dans dans le openMapBtn click event */
 
 // Station popup
-
-// TEMP
-
-fetch('./assets/js/temp.json').then(res => res.json()).then(places => {
-  places.forEach(p => {
-    
-    fetch(`https://commons.wikimedia.org/w/api.php?action=query&format=json&generator=search&gsrsearch=${p.name}-${p.city}&gsrnamespace=6&gsrlimit=1&prop=imageinfo&iiprop=url&origin=*`).then(res => res.json().then(wikiMediaRes => {
-      const placeDiv = document.createElement('div')
-      placeDiv.classList.add('place-item')
-
-      placeDiv.innerHTML = `
-        <div>
-          <p class="place-name">${p.name}</p>
-          <p class="place-type">${p.type}</p>
-          <p class="place-city">${p.city}</p>
-          <img class="place-image" src="${Object.values(wikiMediaRes.query.pages)[0].imageinfo[0].url}" />
-        </div>
-      `
-      placesBox.appendChild(placeDiv)
-    }))
-  })
-})
