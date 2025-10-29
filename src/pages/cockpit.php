@@ -38,6 +38,8 @@
         <div class="top"></div>
 
         <div class="windshield">
+          <div class="windshield-landscape" id="windshield-landscape"></div>
+
           <div class="places-sub-box" id="places-sub-box">
             <div class="places-box" id="places-box"></div>
           </div>
@@ -66,7 +68,7 @@
             <div class="minimap-box">
               <span class="selector-map-icon map-open material-symbols-outlined">arrow_selector_tool</span>
 
-              <div class="minimap map-open">
+              <div class="minimap map-open" id="minimap">
                 <img src="./assets/images/illustrations/france_map_flat.svg" alt="carte_france_decorative">
               </div>
             </div>

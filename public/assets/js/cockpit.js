@@ -2,8 +2,12 @@ const openMapBtns = document.querySelectorAll('.map-open')
 const closeMapBtn = document.getElementById('close-map')
 const mapSubBox = document.getElementById('map-sub-box')
 
+const minimap = document.getElementById('minimap')
+
 const placesBox = document.getElementById('places-box')
 const placesSubBox = document.getElementById('places-sub-box')
+
+const windshieldLandscape = document.getElementById('windshield-landscape')
 
 
 // Map : ouverture / fermeture (ESC, btn, en dehors) 
@@ -39,24 +43,50 @@ openMapBtns.forEach(e => {
         mapSubBox.style.display = 'none'
         placesSubBox.style.height = '100%'
         placesBox.innerHTML = ''
+        minimap.classList.add('minimap-wrapped')
+        windshieldLandscape.style.display = 'none'
+        
+        const placesWithoutMedia = []
 
     // Places list
-        
-        places.forEach(p => {
-          fetch(`https://commons.wikimedia.org/w/api.php?action=query&format=json&generator=search&gsrsearch=${p.name}-${p.city}&gsrnamespace=6&gsrlimit=1&prop=imageinfo&iiprop=url&origin=*`).then(res => res.json().then(wikiMediaRes => {
-            const placeDiv = document.createElement('div')
-            placeDiv.classList.add('place-item')
 
+        await Promise.all(places.map(async p => {
+          const res = await fetch(`https://commons.wikimedia.org/w/api.php?action=query&format=json&generator=search&gsrsearch=${p.name}-${p.city} filetype:bitmap&gsrnamespace=6&gsrlimit=1&prop=imageinfo&iiprop=url&origin=*`)
+          const wikiMediaRes = await res.json()
+
+          if (wikiMediaRes.query) {
+            const imgURL = Object.values(wikiMediaRes.query.pages)[0].imageinfo[0].url
+            const placeDiv = document.createElement('div')
+
+            placeDiv.classList.add('place-item')
             placeDiv.innerHTML = `
               <div>
                 <p class="place-name">${p.name}</p>
                 <p class="place-type">${p.type}</p>
                 <p class="place-city">${p.city}</p>
-                <img class="place-image" src="${Object.values(wikiMediaRes.query.pages)[0].imageinfo[0].url}" />
+                <img class="place-image" src="${imgURL}" />
               </div>
             `
             placesBox.appendChild(placeDiv)
-          }))
+            
+          } else {
+            placesWithoutMedia.push(p)
+          }
+        }))
+
+        placesWithoutMedia.forEach(p => {
+          const placeDiv = document.createElement('div')
+          placeDiv.classList.add('place-item')
+
+          placeDiv.innerHTML = `
+            <div>
+              <p class="place-name">${p.name}</p>
+              <p class="place-type">${p.type}</p>
+              <p class="place-city">${p.city}</p>
+              <img class="place-image" src="#" />
+            </div>
+          `
+          placesBox.appendChild(placeDiv)
         })
       })
     })
@@ -107,5 +137,3 @@ async function loadStations(map, markers) {
 // Map
 
 /* Déplacé dans dans le openMapBtn click event */
-
-// Station popup

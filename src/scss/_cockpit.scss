@@ -36,10 +36,18 @@ body {
 
     .windshield {
       width: 100%;
-      // flex-grow: 1;
-      // max-height: 100%;
+      height: 100%;
       position: relative;
       overflow: hidden;
+
+      .windshield-landscape {
+        width: 100%;
+        height: 100%;
+        background-image: url('../images/illustrations/rails_landscape_1.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
     }
 
     .sides-box {
@@ -92,15 +100,27 @@ body {
         bottom: 0;
 
         .minimap-box {
-          width: clamp(130px, 55%, 9999px);
+          width: clamp(130px, 40%, 9999px);
           position: absolute;
-          aspect-ratio: 1.3/1;
           background-color: #5e5e64;
           transform: translateX(-50%);
           left: 50%;
           bottom: 50%;
           border-radius: 10px;
-          padding: 20px;
+          padding: 15px;
+
+          .minimap {
+            overflow: hidden;
+            cursor: pointer;
+            background-color: #0072d6;
+            padding: 9%;
+            border-radius: 10px;
+            // box-shadow: inset -10px -10px 0px 2px rgba(0, 0, 0, 0.2);
+          }
+
+          .minimap-wrapped {
+            aspect-ratio: 2/1.1;
+          }
 
           .selector-map-icon {
             position: absolute;
@@ -113,14 +133,6 @@ body {
             background-color: rgba(0, 0, 0, 0.295);
             border-radius: 1000px;
             padding: 7%;
-          }
-
-          .minimap {
-            cursor: pointer;
-            background-color: #0072d6;
-            padding: 9%;
-            border-radius: 10px;
-            // box-shadow: inset -10px -10px 0px 2px rgba(0, 0, 0, 0.2);
           }
         }
       }
