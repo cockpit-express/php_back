@@ -17,10 +17,6 @@
   <body>
     <main class="cockpit-sec">
       <div class="screen">
-        <div class="places-sub-box">
-          <div class="places-box" id="places-box"></div>
-        </div>
-
         <div class="map-sub-box" id="map-sub-box">
           <div class="map-box" id="map-box">
             <div class="map-header">
@@ -41,21 +37,27 @@
 
         <div class="top"></div>
 
-        <div class="sides-box">
-          <div class="side-box">
-            <div class="slide-extra"></div>
-
-            <svg class="side-svg" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.42 723.29">
-              <path class="cls-1" d="M0,0v13.96C0,6.25,6.45,0,14.42,0H0ZM57,709.33L0,13.96v709.33h71.42c-7.97,0-14.42-6.25-14.42-13.96Z"/>
-            </svg>
+        <div class="windshield">
+          <div class="places-sub-box">
+            <div class="places-box" id="places-box"></div>
           </div>
-          
-          <div class="side-box">
-            <svg class="side-svg" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.42 723.29">
-              <path class="cls-1" d="M57,0C64.97,0,71.42,6.25,71.42,13.96V0h-14.42ZM14.42,709.33c0,7.71-6.45,13.96-14.42,13.96h71.42V13.96L14.42,709.33Z"/>
-            </svg>
 
-            <div class="slide-extra"></div>
+          <div class="sides-box">
+            <div class="side-box">
+              <div class="slide-extra"></div>
+
+              <svg class="side-svg" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.42 723.29">
+                <path class="cls-1" d="M0,0v13.96C0,6.25,6.45,0,14.42,0H0ZM57,709.33L0,13.96v709.33h71.42c-7.97,0-14.42-6.25-14.42-13.96Z"/>
+              </svg>
+            </div>
+            
+            <div class="side-box">
+              <svg class="side-svg" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.42 723.29">
+                <path class="cls-1" d="M57,0C64.97,0,71.42,6.25,71.42,13.96V0h-14.42ZM14.42,709.33c0,7.71-6.45,13.96-14.42,13.96h71.42V13.96L14.42,709.33Z"/>
+              </svg>
+
+              <div class="slide-extra"></div>
+            </div>
           </div>
         </div>
 

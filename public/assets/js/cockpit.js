@@ -1,15 +1,51 @@
 const openMapBtns = document.querySelectorAll('.map-open')
 const closeMapBtn = document.getElementById('close-map')
-const mapBox = document.getElementById('map-box')
 const mapSubBox = document.getElementById('map-sub-box')
 const placesBox = document.getElementById('places-box')
 
 
-// Map : uuverture / fermeture (ESC, btn, en dehors) 
+// Map : ouverture / fermeture (ESC, btn, en dehors) 
 
 openMapBtns.forEach(e => {
   e.addEventListener('click', () => {
     mapSubBox.style.display = 'flex'
+
+    const map = L.map('map').setView([46.603354, 1.888334], 6)
+
+    L.tileLayer('https://tile.thunderforest.com/pioneer/{z}/{x}/{y}.png?apikey=3459ca86e7404c7082ff1460541f46d0', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      detectRetina: true
+    }).addTo(map)
+
+    const markers = L.markerClusterGroup({
+      showCoverageOnHover: false,
+    })
+
+    loadStations(map, markers)
+
+    markers.on('popupopen', async (e) => {
+      const popupNode = e.popup.getElement()
+      const stationBtn = popupNode.querySelector('#station-btn')
+
+      stationBtn.addEventListener('click', async () => {
+        stationData = e.popup._source.data
+
+        const res = await fetch(`http://localhost/saews303d/public/api/places?lat=${stationData.latitude}&lon=${stationData.longitude}&radiusKm=${'5'}`)
+        const places = await res.json()
+
+    // Places list
+
+        // require('./temp.json').forEach(p => {
+        //   placesBox.innerHTML += `
+        //     <div>
+        //       <p>${p.name}</p>
+        //       <p>${p.city}</p>
+        //     </div>
+        //   `
+        // })
+      })
+    })
   })
 })
 
@@ -56,44 +92,9 @@ async function loadStations(map, markers) {
 
 // Map
 
-const map = L.map('map').setView([46.603354, 1.888334], 6)
-
-L.tileLayer('https://tile.thunderforest.com/pioneer/{z}/{x}/{y}.png?apikey=3459ca86e7404c7082ff1460541f46d0', {
-  maxZoom: 19,
-  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-  detectRetina: true
-}).addTo(map)
-
-const markers = L.markerClusterGroup({
-  showCoverageOnHover: false,
-})
-
-loadStations(map, markers)
+/* Déplacé dans dans le openMapBtn click event */
 
 // Station popup
-
-markers.on('popupopen', async (e) => {
-  const popupNode = e.popup.getElement()
-  const stationBtn = popupNode.querySelector('#station-btn')
-
-  stationBtn.addEventListener('click', async () => {
-    stationData = e.popup._source.data
-
-    const res = await fetch(`http://localhost/saews303d/public/api/places?lat=${stationData.latitude}&lon=${stationData.longitude}&radiusKm=${'5'}`)
-    const places = await res.json()
-
-// Places list
-
-    // require('./temp.json').forEach(p => {
-    //   placesBox.innerHTML += `
-    //     <div>
-    //       <p>${p.name}</p>
-    //       <p>${p.city}</p>
-    //     </div>
-    //   `
-    // })
-  })
-})
 
 // TEMP
 
@@ -103,13 +104,13 @@ fetch('./assets/js/temp.json').then(res => res.json()).then(places => {
     fetch(`https://commons.wikimedia.org/w/api.php?action=query&format=json&generator=search&gsrsearch=${p.name}-${p.city}&gsrnamespace=6&gsrlimit=1&prop=imageinfo&iiprop=url&origin=*`).then(res => res.json().then(wikiMediaRes => {
       const placeDiv = document.createElement('div')
       placeDiv.classList.add('place-item')
-// console.log(Object.values(wikiMediaRes.query.pages)[0].imageinfo[0].url)
+
       placeDiv.innerHTML = `
         <div>
           <p class="place-name">${p.name}</p>
           <p class="place-type">${p.type}</p>
           <p class="place-city">${p.city}</p>
-          <img src="${Object.values(wikiMediaRes.query.pages)[0].imageinfo[0].url}" style="width: 200px;" />
+          <img class="place-image" src="${Object.values(wikiMediaRes.query.pages)[0].imageinfo[0].url}" />
         </div>
       `
       placesBox.appendChild(placeDiv)
