@@ -9,6 +9,10 @@ const placesSubBox = document.getElementById('places-sub-box')
 
 const windshieldLandscape = document.getElementById('windshield-landscape')
 
+const storySubBox = document.getElementById('story-sub-box')
+const storyTxt = document.getElementById('story-text')
+const progressBar = document.getElementById('progress-bar')
+
 
 // Map : ouverture / fermeture (ESC, btn, en dehors) 
 
@@ -39,18 +43,15 @@ openMapBtns.forEach(e => {
 
         const res = await fetch(`http://localhost/saews303d/public/api/places?lat=${stationData.latitude}&lon=${stationData.longitude}&radiusKm=${'5'}`)
         const places = await res.json()
-
-        mapSubBox.style.display = 'none'
-        placesSubBox.style.height = '100%'
-        placesBox.innerHTML = ''
-        minimap.classList.add('minimap-wrapped')
-        windshieldLandscape.style.display = 'none'
         
         const placesWithoutMedia = []
 
-    // Places list
+        mapSubBox.style.display = 'none'
+        storySubBox.style.display = 'flex'
 
-        await Promise.all(places.map(async p => {
+        // Wikimedia Promise
+
+        const wikiMediaPromise = Promise.all(places.map(async p => {
           const res = await fetch(`https://commons.wikimedia.org/w/api.php?action=query&format=json&generator=search&gsrsearch=${p.name}-${p.city} filetype:bitmap&gsrnamespace=6&gsrlimit=1&prop=imageinfo&iiprop=url&origin=*`)
           const wikiMediaRes = await res.json()
 
@@ -74,6 +75,15 @@ openMapBtns.forEach(e => {
           }
         }))
 
+        // Story Promise
+
+        const storyPromise = displayStoryTransitionText()
+
+        // Lancement Promises
+
+        placesBox.innerHTML = ''
+        await Promise.all([wikiMediaPromise, storyPromise])
+
         placesWithoutMedia.forEach(p => {
           const placeDiv = document.createElement('div')
           placeDiv.classList.add('place-item')
@@ -88,6 +98,10 @@ openMapBtns.forEach(e => {
           `
           placesBox.appendChild(placeDiv)
         })
+
+        placesSubBox.style.height = '100%'
+        minimap.classList.add('minimap-wrapped')
+        windshieldLandscape.style.display = 'none'
       })
     })
   })
@@ -134,6 +148,35 @@ async function loadStations(map, markers) {
   }
 }
 
-// Map
+// Story transition
 
-/* Déplacé dans dans le openMapBtn click event */
+const steps = [
+  { text: "Calcul de l'itinéraire...", progress: 15 },
+  { text: "Propulsion du train...", progress: 30 },
+  { text: "Un petit encas ?", progress: 60 },
+  { text: "Arrivée imminente !", progress: 100 }
+]
+let textIndex = 0
+
+function textAnimation(text, callback) {
+  return new Promise(resolve => {
+    let i = 0
+    const interval = setInterval(() => {
+      storyTxt.textContent = text.slice(0, i+1)
+      i++
+
+      if (i === text.length) {
+        clearInterval(interval)
+        setTimeout(resolve, 1000)
+      }
+    }, 20)
+  })
+}
+
+async function displayStoryTransitionText() {
+  for (const step of steps) {
+    progressBar.style.width = `${step.progress}%`
+    await textAnimation(step.text)
+  }
+  console.log("All's good")
+}

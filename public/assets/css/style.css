@@ -771,4 +771,39 @@ button {
   object-fit: cover;
 }
 
+.story-sub-box {
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.2980392157);
+}
+.story-sub-box .story-box {
+  width: 340px;
+  border-radius: 10px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(25px, 5%, 200px);
+  gap: 20px;
+  text-align: center;
+}
+.story-sub-box .story-box p {
+  margin: 0;
+}
+.story-sub-box .story-box .progress-box {
+  width: 100%;
+  height: 15px;
+  background-color: #e0e0e0;
+  border-radius: 100px;
+}
+.story-sub-box .story-box .progress-box .progress-bar {
+  height: 100%;
+  width: 0%;
+  border-radius: 100px;
+  background-color: #45a3f5;
+  transition: width 1s ease;
+}
+
 /*# sourceMappingURL=style.css.map */

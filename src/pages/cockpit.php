@@ -38,7 +38,17 @@
         <div class="top"></div>
 
         <div class="windshield">
-          <div class="windshield-landscape" id="windshield-landscape"></div>
+          <div class="windshield-landscape" id="windshield-landscape">
+            <div class="story-sub-box" id="story-sub-box">
+              <div class="story-box">
+                <p id="story-text"></p>
+                
+                <div class="progress-box">
+                  <div class="progress-bar" id="progress-bar"></div>
+                </div>
+              </div>
+            </div>
+          </div>
 
           <div class="places-sub-box" id="places-sub-box">
             <div class="places-box" id="places-box"></div>
