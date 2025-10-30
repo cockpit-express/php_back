@@ -39,21 +39,20 @@
 
         <div class="windshield">
           <div class="windshield-landscape" id="windshield-landscape">
-            <div class="story-sub-box" id="story-sub-box">
-              <div class="story-box">
-                <p id="story-text"></p>
-                
-                <div class="progress-box">
-                  <div class="progress-bar" id="progress-bar"></div>
+            <div class="windshield-content-sub-box" id="windshield-content-sub-box">
+              <div class="windshield-content-box" id="windshield-content-box"> 
+                <div class="story-box" id="story-box">
+                  <p id="story-text"></p>
+                  
+                  <div class="progress-box">
+                    <div class="progress-bar" id="progress-bar"></div>
+                  </div>
                 </div>
+
+                <div class="places-box" id="places-box"></div>
               </div>
             </div>
           </div>
-
-          <div class="places-sub-box" id="places-sub-box">
-            <div class="places-box" id="places-box"></div>
-          </div>
-
           <!-- <div class="sides-box">
             <div class="side-box">
               <div class="slide-extra"></div>

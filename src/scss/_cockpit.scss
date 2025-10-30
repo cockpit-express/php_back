@@ -47,6 +47,22 @@ body {
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+
+        .windshield-content-sub-box {
+          width: 100%;
+          height: 100%;
+          display: none; // Toggle flex
+          justify-content: center;
+          align-items: center; // Toggle with class windshield-content-sub-box-placesmod
+          background-color: #0000004c;
+          overflow: scroll;
+
+          .windshield-content-box {
+            display: flex;
+            background-color: #fff;
+            border-radius: 10px;
+          }
+        }
       }
     }
 

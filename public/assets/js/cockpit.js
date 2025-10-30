@@ -4,15 +4,13 @@ const mapSubBox = document.getElementById('map-sub-box')
 
 const minimap = document.getElementById('minimap')
 
+const windshieldContentSubBox = document.getElementById('windshield-content-sub-box')
+const windshieldContentBox = document.getElementById('windshield-content-box')
+const storyBox = document.getElementById('story-box')
 const placesBox = document.getElementById('places-box')
-const placesSubBox = document.getElementById('places-sub-box')
 
-const windshieldLandscape = document.getElementById('windshield-landscape')
-
-const storySubBox = document.getElementById('story-sub-box')
 const storyTxt = document.getElementById('story-text')
 const progressBar = document.getElementById('progress-bar')
-
 
 // Map : ouverture / fermeture (ESC, btn, en dehors) 
 
@@ -47,7 +45,8 @@ openMapBtns.forEach(e => {
         const placesWithoutMedia = []
 
         mapSubBox.style.display = 'none'
-        storySubBox.style.display = 'flex'
+        storyBox.style.display = 'flex'
+        windshieldContentSubBox.style.display = 'flex'
 
         // Wikimedia Promise
 
@@ -83,6 +82,12 @@ openMapBtns.forEach(e => {
 
         placesBox.innerHTML = ''
         await Promise.all([wikiMediaPromise, storyPromise])
+        storyBox.style.display = 'none'
+        windshieldContentSubBox.classList.add('windshield-content-sub-box-placesmod-init')
+        void windshieldContentSubBox.offsetWidth
+        placesBox.style.display = 'flex'
+        windshieldContentSubBox.classList.add('windshield-content-sub-box-placesmod-extend')
+        windshieldContentBox.classList.add('windshield-content-box-placesmod-extend')
 
         placesWithoutMedia.forEach(p => {
           const placeDiv = document.createElement('div')
@@ -99,9 +104,7 @@ openMapBtns.forEach(e => {
           placesBox.appendChild(placeDiv)
         })
 
-        placesSubBox.style.height = '100%'
         minimap.classList.add('minimap-wrapped')
-        windshieldLandscape.style.display = 'none'
       })
     })
   })
@@ -167,7 +170,7 @@ function textAnimation(text, callback) {
 
       if (i === text.length) {
         clearInterval(interval)
-        setTimeout(resolve, 1000)
+        setTimeout(resolve, 750)
       }
     }, 20)
   })
@@ -178,5 +181,4 @@ async function displayStoryTransitionText() {
     progressBar.style.width = `${step.progress}%`
     await textAnimation(step.text)
   }
-  console.log("All's good")
 }

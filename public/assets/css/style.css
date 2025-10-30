@@ -533,6 +533,20 @@ body {
   background-position: center;
   background-repeat: no-repeat;
 }
+.cockpit-sec .screen .windshield .windshield-landscape .windshield-content-sub-box {
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.2980392157);
+  overflow: scroll;
+}
+.cockpit-sec .screen .windshield .windshield-landscape .windshield-content-sub-box .windshield-content-box {
+  display: flex;
+  background-color: #fff;
+  border-radius: 10px;
+}
 .cockpit-sec .screen .sides-box {
   position: absolute;
   pointer-events: none;
@@ -749,56 +763,57 @@ button {
   font-size: 21px;
 }
 
-.places-sub-box {
-  height: 0%;
-  overflow: scroll;
+.windshield-content-sub-box-placesmod-init {
+  align-items: start !important;
+  transform: scale(0.1);
 }
-.places-sub-box .places-box {
+.windshield-content-sub-box-placesmod-init.windshield-content-sub-box-placesmod-extend {
+  transition: transform 0.5s ease-in-out;
+  transform: scale(1);
+}
+
+.windshield-content-box-placesmod-extend {
+  border-radius: 0px !important;
+  transition: border-radius 0.5s ease;
+}
+
+.places-box {
   padding: 0px 100px;
-  background-color: #fff;
-  display: flex;
   gap: 20px;
+  display: none;
   flex-wrap: wrap;
 }
-.places-sub-box .places-box .place-item {
+.places-box .place-item {
   background-color: rgb(250, 250, 250);
   font-size: 14px;
   flex: 1 1 300px;
 }
-.places-sub-box .places-box .place-item .place-image {
+.places-box .place-item .place-image {
   width: 100%;
   height: 200px;
   object-fit: cover;
 }
 
-.story-sub-box {
-  width: 100%;
-  height: 100%;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.2980392157);
-}
-.story-sub-box .story-box {
+.story-box {
   width: 340px;
   border-radius: 10px;
-  background-color: #fff;
-  display: flex;
+  display: none;
   flex-direction: column;
   padding: clamp(25px, 5%, 200px);
   gap: 20px;
   text-align: center;
+  border-radius: 10px;
 }
-.story-sub-box .story-box p {
+.story-box p {
   margin: 0;
 }
-.story-sub-box .story-box .progress-box {
+.story-box .progress-box {
   width: 100%;
   height: 15px;
   background-color: #e0e0e0;
   border-radius: 100px;
 }
-.story-sub-box .story-box .progress-box .progress-bar {
+.story-box .progress-box .progress-bar {
   height: 100%;
   width: 0%;
   border-radius: 100px;

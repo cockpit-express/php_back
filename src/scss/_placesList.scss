@@ -1,24 +1,32 @@
-.places-sub-box {
-  height: 0%; // Toggle
-  overflow: scroll;
+.windshield-content-sub-box-placesmod-init {
+  align-items: start !important;
+  transform: scale(0.1);
 
-  .places-box {
-    padding: 0px 100px;
-    background-color: #fff;
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
+  &.windshield-content-sub-box-placesmod-extend {
+    transition: transform 0.5s ease-in-out;
+    transform: scale(1);
+  }
+} 
+.windshield-content-box-placesmod-extend {
+  border-radius: 0px !important;
+  transition: border-radius 0.5s ease;
+}
 
-    .place-item {
-      background-color: rgb(250, 250, 250);
-      font-size: 14px;
-      flex: 1 1 300px;
+.places-box {
+  padding: 0px 100px;
+  gap: 20px;
+  display: none; // Toggle none/flex
+  flex-wrap: wrap;
 
-      .place-image {
-        width: 100%;
-        height: 200px;
-        object-fit: cover; 
-      }
+  .place-item {
+    background-color: rgb(250, 250, 250);
+    font-size: 14px;
+    flex: 1 1 300px;
+
+    .place-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover; 
     }
   }
 }
