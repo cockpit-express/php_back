@@ -1,184 +1,282 @@
-const openMapBtns = document.querySelectorAll('.map-open')
-const closeMapBtn = document.getElementById('close-map')
-const mapSubBox = document.getElementById('map-sub-box')
+const DOM = {
+  map: {
+    buttons: {
+      open: document.querySelectorAll('.map-open'),
+      close: document.getElementById('close-map')
+    },
+    containers: {
+      subBox: document.getElementById('map-sub-box'),
+      minimap: document.getElementById('minimap'),
+    }
+  },
+  windshield: {
+    containers: {
+      windshieldContentSubBox: document.getElementById('windshield-content-sub-box'),
+      windshieldContentBox: document.getElementById('windshield-content-box'),
+    }
+  },
+  story: {
+    containers: {
+      storyBox: document.getElementById('story-box'),
+    },
+    elements: {
+      storyTxt: document.getElementById('story-text'),
+      progressBar: document.getElementById('progress-bar')
+    }
+  },
+  placesList: {
+    containers: {
+      placesBox: document.getElementById('places-box'),
+    }
+  }
+}
 
-const minimap = document.getElementById('minimap')
+class MapManager {
+  constructor() {
+    this.map = null
+    this.markers = null
+  }
 
-const windshieldContentSubBox = document.getElementById('windshield-content-sub-box')
-const windshieldContentBox = document.getElementById('windshield-content-box')
-const storyBox = document.getElementById('story-box')
-const placesBox = document.getElementById('places-box')
-
-const storyTxt = document.getElementById('story-text')
-const progressBar = document.getElementById('progress-bar')
-
-// Map : ouverture / fermeture (ESC, btn, en dehors) 
-
-openMapBtns.forEach(e => {
-  e.addEventListener('click', () => {
-    mapSubBox.style.display = 'flex'
-
-    const map = L.map('map').setView([46.603354, 1.888334], 6)
+  initialize() {
+    this.map = L.map('map').setView([46.603354, 1.888334], 6)
 
     L.tileLayer('https://tile.thunderforest.com/pioneer/{z}/{x}/{y}.png?apikey=3459ca86e7404c7082ff1460541f46d0', {
       maxZoom: 19,
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
       detectRetina: true
-    }).addTo(map)
+    }).addTo(this.map)
 
-    const markers = L.markerClusterGroup({
+    this.markers = L.markerClusterGroup({
       showCoverageOnHover: false,
     })
 
-    loadStations(map, markers)
+    this.loadStations()
+    this.setupMarkerEvents()
+  }
 
-    markers.on('popupopen', async (e) => {
+  async loadStations() {
+    try {
+      const res = await fetch('http://localhost/saews303d/public/api/stations')
+      const stations = await res.json()
+
+      stations.forEach(station => {
+        const marker = L.marker([station.latitude, station.longitude])
+        marker.data = station
+
+        marker.bindPopup(`
+          <p>Gare de <b>${station.name}</b></p>
+          <button id="station-btn">S'y rendre</button>
+        `)
+        this.markers.addLayer(marker)
+      })
+
+      this.map.addLayer(this.markers)
+
+    } catch {
+      console.error(`Error during stations load`)
+    }
+  }
+
+  setupMarkerEvents() {
+    this.markers.on('popupopen', async (e) => {
       const popupNode = e.popup.getElement()
       const stationBtn = popupNode.querySelector('#station-btn')
 
       stationBtn.addEventListener('click', async () => {
-        stationData = e.popup._source.data
-
-        const res = await fetch(`http://localhost/saews303d/public/api/places?lat=${stationData.latitude}&lon=${stationData.longitude}&radiusKm=${'5'}`)
-        const places = await res.json()
-        
-        const placesWithoutMedia = []
-
-        mapSubBox.style.display = 'none'
-        storyBox.style.display = 'flex'
-        windshieldContentSubBox.style.display = 'flex'
-
-        // Wikimedia Promise
-
-        const wikiMediaPromise = Promise.all(places.map(async p => {
-          const res = await fetch(`https://commons.wikimedia.org/w/api.php?action=query&format=json&generator=search&gsrsearch=${p.name}-${p.city} filetype:bitmap&gsrnamespace=6&gsrlimit=1&prop=imageinfo&iiprop=url&origin=*`)
-          const wikiMediaRes = await res.json()
-
-          if (wikiMediaRes.query) {
-            const imgURL = Object.values(wikiMediaRes.query.pages)[0].imageinfo[0].url
-            const placeDiv = document.createElement('div')
-
-            placeDiv.classList.add('place-item')
-            placeDiv.innerHTML = `
-              <div>
-                <p class="place-name">${p.name}</p>
-                <p class="place-type">${p.type}</p>
-                <p class="place-city">${p.city}</p>
-                <img class="place-image" src="${imgURL}" />
-              </div>
-            `
-            placesBox.appendChild(placeDiv)
-            
-          } else {
-            placesWithoutMedia.push(p)
-          }
-        }))
-
-        // Story Promise
-
-        const storyPromise = displayStoryTransitionText()
-
-        // Lancement Promises
-
-        placesBox.innerHTML = ''
-        await Promise.all([wikiMediaPromise, storyPromise])
-        storyBox.style.display = 'none'
-        windshieldContentSubBox.classList.add('windshield-content-sub-box-placesmod-init')
-        void windshieldContentSubBox.offsetWidth
-        placesBox.style.display = 'flex'
-        windshieldContentSubBox.classList.add('windshield-content-sub-box-placesmod-extend')
-        windshieldContentBox.classList.add('windshield-content-box-placesmod-extend')
-
-        placesWithoutMedia.forEach(p => {
-          const placeDiv = document.createElement('div')
-          placeDiv.classList.add('place-item')
-
-          placeDiv.innerHTML = `
-            <div>
-              <p class="place-name">${p.name}</p>
-              <p class="place-type">${p.type}</p>
-              <p class="place-city">${p.city}</p>
-              <img class="place-image" src="#" />
-            </div>
-          `
-          placesBox.appendChild(placeDiv)
-        })
-
-        minimap.classList.add('minimap-wrapped')
+        const stationData = e.popup._source.data
+        await PlacesManager.loadAndDisplayPlaces(stationData)
       })
     })
-  })
-})
-
-closeMapBtn.addEventListener('click', () => {
-  mapSubBox.style.display = 'none'
-})
-
-mapSubBox.addEventListener('click', (e) => {
-  if (e.target === mapSubBox) {
-    mapSubBox.style.display = 'none'
   }
-})
 
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    mapSubBox.style.display = 'none'
-  }
-})
-
-// Functions
-
-
-async function loadStations(map, markers) {
-  try {
-    const res = await fetch('http://localhost/saews303d/public/api/stations')
-    const stations = await res.json()
-
-    stations.forEach(s => {
-      const marker = L.marker([s.latitude, s.longitude])
-      marker.data = s
-
-      marker.bindPopup(`
-        <p>Gare de <b>${s.name}</b></p>
-        <button id="station-btn">S'y rendre</button>
-      `)
-      markers.addLayer(marker)
-    })
-    map.addLayer(markers)
-
-  } catch (error) {
-    console.error('Error during stations fetch', error)
+  destroy() {
+    if (this.map) {
+      this.map.remove()
+      this.map = null
+      this.markers = null
+    }
   }
 }
 
-// Story transition
+class PlacesManager {
+  static async loadAndDisplayPlaces(stationData) {
+    try {
+      const places = await this.fetchPlaces(stationData)
+      this.prepareUI()
 
-const steps = [
-  { text: "Calcul de l'itinéraire...", progress: 15 },
-  { text: "Propulsion du train...", progress: 30 },
-  { text: "Un petit encas ?", progress: 60 },
-  { text: "Arrivée imminente !", progress: 100 }
-]
-let textIndex = 0
+      const placesWithoutMedia = []
+      const wikiMediaPromise = this.loadPlacesWithMedia(places, placesWithoutMedia)
+      const storyPromise = StoryManager.displayTransition()
 
-function textAnimation(text, callback) {
-  return new Promise(resolve => {
-    let i = 0
-    const interval = setInterval(() => {
-      storyTxt.textContent = text.slice(0, i+1)
-      i++
+      await Promise.all([wikiMediaPromise, storyPromise])
+      this.displayPlaces(placesWithoutMedia)
+    
+    } catch (err) {
+      console.error(`Error during places load`, err)
+    }
+  }
 
-      if (i === text.length) {
-        clearInterval(interval)
-        setTimeout(resolve, 750)
+  static async fetchPlaces(stationData) {
+    const url = `http://localhost/saews303d/public/api/places?lat=${stationData.latitude}&lon=${stationData.longitude}&radiusKm=${'5'}`
+    const res = await fetch(url)
+    return await res.json()
+  }
+
+  static prepareUI() {
+    DOM.map.containers.subBox.style.display = 'none'
+    DOM.story.containers.storyBox.style.display = 'flex'
+    DOM.windshield.containers.windshieldContentSubBox.style.display = 'flex'
+    DOM.placesList.containers.placesBox.innerHTML = ''
+  }
+
+  static async loadPlacesWithMedia(places, placesWithoutMedia) {
+    const promises = places.map(async (place) => {
+      try {
+        const imageURL = await this.fetchWikimediaImg(place)
+        
+        if (imageURL) {
+          this.appendPlaceElement(place, imageURL)
+        } else {
+          placesWithoutMedia.push(place)
+        }
+      } catch (err) {
+        placesWithoutMedia.push(place)
       }
-    }, 20)
-  })
-}
+    })
+    await Promise.all(promises)
+  }
 
-async function displayStoryTransitionText() {
-  for (const step of steps) {
-    progressBar.style.width = `${step.progress}%`
-    await textAnimation(step.text)
+  static async fetchWikimediaImg(place) {
+    const url = `https://commons.wikimedia.org/w/api.php?action=query&format=json&generator=search&gsrsearch=${place.name}-${place.city} filetype:bitmap&gsrnamespace=6&gsrlimit=1&prop=imageinfo&iiprop=url&origin=*`
+    const res = await fetch(url)
+    const data = await res.json()
+
+    if (data.query) {
+      return Object.values(data.query.pages)[0].imageinfo[0].url
+    }
+    return null
+  }
+
+  static appendPlaceElement(place, imageURL = '#') {
+    const placeDiv = document.createElement('div')
+    placeDiv.classList.add('place-item')
+
+    placeDiv.innerHTML = `
+      <div>
+        <p class="place-name">${place.name}</p>
+        <p class="place-type">${place.type}</p>
+        <p class="place-city">${place.city}</p>
+        <img class="place-image" src="${imageURL}" alt="${place.name}" />
+      </div>
+    `
+    DOM.placesList.containers.placesBox.appendChild(placeDiv)
+  }
+
+  static displayPlaces(placesWithoutMedia) {
+    DOM.story.containers.storyBox.style.display = 'none'
+    DOM.windshield.containers.windshieldContentSubBox.classList.add('windshield-content-sub-box-placesmod-init')
+    void DOM.windshield.containers.windshieldContentSubBox.offsetWidth
+    DOM.placesList.containers.placesBox.style.display = 'flex'
+    DOM.windshield.containers.windshieldContentSubBox.classList.add('windshield-content-sub-box-placesmod-extend')
+    DOM.windshield.containers.windshieldContentBox.classList.add('windshield-content-box-placesmod-extend')
+
+    placesWithoutMedia.forEach(place => {
+      this.appendPlaceElement(place)
+    })
+
+    DOM.map.containers.minimap.classList.add('minimap-wrapped')
   }
 }
+
+class StoryManager {
+  static async displayTransition() {
+    const steps = [
+      { text: "Calcul de l'itinéraire...", progress: 15 },
+      { text: "Propulsion du train...", progress: 30 },
+      { text: "Un petit encas ?", progress: 60 },
+      { text: "Arrivée imminente !", progress: 100 }
+    ]
+
+    for (const step of steps) {
+      DOM.story.elements.progressBar.style.width = `${step.progress}%`
+      await this.animateText(step.text)
+    }
+  }
+
+  static animateText(text) {
+    return new Promise(resolve => {
+      let charIndex = 0
+
+      const interval = setInterval(() => {
+        DOM.story.elements.storyTxt.textContent = text.slice(0, charIndex + 1)
+        charIndex++
+
+        if (charIndex === text.length) {
+          clearInterval(interval)
+          setTimeout(resolve, 750)
+        }
+      }, 20)
+    })
+  }
+}
+
+class EventManager {
+  static mapManager = null
+
+  static init() {
+    this.setupMapOpenBtns()
+    this.setupMapCloseBtn()
+    this.setupMapClickOutside()
+    this.setupEscapeKey()
+  }
+
+  static setupMapOpenBtns() {
+    DOM.map.buttons.open.forEach(btn => {
+      btn.addEventListener('click', () => {
+        DOM.map.containers.subBox.style.display = 'flex'
+
+        if (this.mapManager) {
+          this.mapManager.destroy()
+        }
+
+        this.mapManager = new MapManager()
+        this.mapManager.initialize()
+      })
+    })
+  }
+
+  static setupMapCloseBtn() {
+    DOM.map.buttons.close.addEventListener('click', () => {
+      this.closeMap()
+    })
+  }
+
+  static setupMapClickOutside() {
+    DOM.map.containers.subBox.addEventListener('click', (e) => {
+      if (e.target === DOM.map.containers.subBox) {
+        this.closeMap()
+      }
+    })
+  }
+
+  static setupEscapeKey() {
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        this.closeMap()
+      }
+    })
+  }
+
+  static closeMap() {
+    DOM.map.containers.subBox.style.display = 'none'
+
+    if (this.mapManager) {
+      this.mapManager.destroy()
+      this.mapManager = null
+    }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  EventManager.init()
+})
