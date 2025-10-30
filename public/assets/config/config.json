@@ -1,0 +1,26 @@
+{
+  "API": {
+    "BASE_URL": "http://localhost/saews303d/public/api",
+    "WIKIMEDIA_URL": "https://commons.wikimedia.org/w/api.php"
+  },
+  "MAP": {
+    "CENTER": [46.603354, 1.888334],
+    "ZOOM_LEVEL": 6,
+    "TILES_URL": "https://tile.thunderforest.com/pioneer/{z}/{x}/{y}.png?apikey=3459ca86e7404c7082ff1460541f46d0",
+    "MAX_ZOOM": 19,
+    "ATTRIBUTION": "&copy; <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap</a>"
+  },
+  "PLACES": {
+    "RADIUS_KM": 5
+  },
+  "STORY_TRANSITION": {
+    "STEPS": [
+      { "text": "Calcul de l'itinéraire...", "progress": 15 },
+      { "text": "Propulsion du train...", "progress": 30 },
+      { "text": "Un petit encas ?", "progress": 60 },
+      { "text": "Arrivée imminente !", "progress": 100 }
+    ],
+    "TEXT_SPEED": 20,
+    "PAUSE_DURATION": 750
+  }
+}

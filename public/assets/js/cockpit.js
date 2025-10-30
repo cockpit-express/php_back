@@ -1,3 +1,15 @@
+let CONFIG = null
+
+async function loadConfig() {
+  try {
+      const res = await fetch('./assets/config/config.json')
+      CONFIG = await res.json()
+  } catch (err) {
+    console.error(`Error during config load`)
+    throw err
+  }
+}
+
 const DOM = {
   map: {
     buttons: {
@@ -11,8 +23,8 @@ const DOM = {
   },
   windshield: {
     containers: {
-      windshieldContentSubBox: document.getElementById('windshield-content-sub-box'),
-      windshieldContentBox: document.getElementById('windshield-content-box'),
+      contentSubBox: document.getElementById('windshield-content-sub-box'),
+      contentBox: document.getElementById('windshield-content-box'),
     }
   },
   story: {
@@ -20,13 +32,13 @@ const DOM = {
       storyBox: document.getElementById('story-box'),
     },
     elements: {
-      storyTxt: document.getElementById('story-text'),
+      txt: document.getElementById('story-text'),
       progressBar: document.getElementById('progress-bar')
     }
   },
   placesList: {
     containers: {
-      placesBox: document.getElementById('places-box'),
+      box: document.getElementById('places-box'),
     }
   }
 }
@@ -38,11 +50,11 @@ class MapManager {
   }
 
   initialize() {
-    this.map = L.map('map').setView([46.603354, 1.888334], 6)
+    this.map = L.map('map').setView(CONFIG.MAP.CENTER, CONFIG.MAP.ZOOM_LEVEL)
 
-    L.tileLayer('https://tile.thunderforest.com/pioneer/{z}/{x}/{y}.png?apikey=3459ca86e7404c7082ff1460541f46d0', {
-      maxZoom: 19,
-      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    L.tileLayer(CONFIG.MAP.TILES_URL, {
+      maxZoom: CONFIG.MAP.MAX_ZOOM,
+      attribution: CONFIG.MAP.ATTRIBUTION,
       detectRetina: true
     }).addTo(this.map)
 
@@ -56,7 +68,7 @@ class MapManager {
 
   async loadStations() {
     try {
-      const res = await fetch('http://localhost/saews303d/public/api/stations')
+      const res = await fetch(`${CONFIG.API.BASE_URL}/stations`)
       const stations = await res.json()
 
       stations.forEach(station => {
@@ -117,7 +129,7 @@ class PlacesManager {
   }
 
   static async fetchPlaces(stationData) {
-    const url = `http://localhost/saews303d/public/api/places?lat=${stationData.latitude}&lon=${stationData.longitude}&radiusKm=${'5'}`
+    const url = `${CONFIG.API.BASE_URL}/places?lat=${stationData.latitude}&lon=${stationData.longitude}&radiusKm=${CONFIG.PLACES.RADIUS_KM}`
     const res = await fetch(url)
     return await res.json()
   }
@@ -125,8 +137,8 @@ class PlacesManager {
   static prepareUI() {
     DOM.map.containers.subBox.style.display = 'none'
     DOM.story.containers.storyBox.style.display = 'flex'
-    DOM.windshield.containers.windshieldContentSubBox.style.display = 'flex'
-    DOM.placesList.containers.placesBox.innerHTML = ''
+    DOM.windshield.containers.contentSubBox.style.display = 'flex'
+    DOM.placesList.containers.box.innerHTML = ''
   }
 
   static async loadPlacesWithMedia(places, placesWithoutMedia) {
@@ -147,7 +159,7 @@ class PlacesManager {
   }
 
   static async fetchWikimediaImg(place) {
-    const url = `https://commons.wikimedia.org/w/api.php?action=query&format=json&generator=search&gsrsearch=${place.name}-${place.city} filetype:bitmap&gsrnamespace=6&gsrlimit=1&prop=imageinfo&iiprop=url&origin=*`
+    const url = `${CONFIG.API.WIKIMEDIA_URL}?action=query&format=json&generator=search&gsrsearch=${place.name}-${place.city} filetype:bitmap&gsrnamespace=6&gsrlimit=1&prop=imageinfo&iiprop=url&origin=*`
     const res = await fetch(url)
     const data = await res.json()
 
@@ -169,16 +181,16 @@ class PlacesManager {
         <img class="place-image" src="${imageURL}" alt="${place.name}" />
       </div>
     `
-    DOM.placesList.containers.placesBox.appendChild(placeDiv)
+    DOM.placesList.containers.box.appendChild(placeDiv)
   }
 
   static displayPlaces(placesWithoutMedia) {
     DOM.story.containers.storyBox.style.display = 'none'
-    DOM.windshield.containers.windshieldContentSubBox.classList.add('windshield-content-sub-box-placesmod-init')
-    void DOM.windshield.containers.windshieldContentSubBox.offsetWidth
-    DOM.placesList.containers.placesBox.style.display = 'flex'
-    DOM.windshield.containers.windshieldContentSubBox.classList.add('windshield-content-sub-box-placesmod-extend')
-    DOM.windshield.containers.windshieldContentBox.classList.add('windshield-content-box-placesmod-extend')
+    DOM.windshield.containers.contentSubBox.classList.add('windshield-content-sub-box-placesmod-init')
+    void DOM.windshield.containers.contentSubBox.offsetWidth
+    DOM.placesList.containers.box.style.display = 'flex'
+    DOM.windshield.containers.contentSubBox.classList.add('windshield-content-sub-box-placesmod-extend')
+    DOM.windshield.containers.contentBox.classList.add('windshield-content-box-placesmod-extend')
 
     placesWithoutMedia.forEach(place => {
       this.appendPlaceElement(place)
@@ -190,14 +202,7 @@ class PlacesManager {
 
 class StoryManager {
   static async displayTransition() {
-    const steps = [
-      { text: "Calcul de l'itinéraire...", progress: 15 },
-      { text: "Propulsion du train...", progress: 30 },
-      { text: "Un petit encas ?", progress: 60 },
-      { text: "Arrivée imminente !", progress: 100 }
-    ]
-
-    for (const step of steps) {
+    for (const step of CONFIG.STORY_TRANSITION.STEPS) {
       DOM.story.elements.progressBar.style.width = `${step.progress}%`
       await this.animateText(step.text)
     }
@@ -208,14 +213,14 @@ class StoryManager {
       let charIndex = 0
 
       const interval = setInterval(() => {
-        DOM.story.elements.storyTxt.textContent = text.slice(0, charIndex + 1)
+        DOM.story.elements.txt.textContent = text.slice(0, charIndex + 1)
         charIndex++
 
         if (charIndex === text.length) {
           clearInterval(interval)
-          setTimeout(resolve, 750)
+          setTimeout(resolve, CONFIG.STORY_TRANSITION.PAUSE_DURATION)
         }
-      }, 20)
+      }, CONFIG.STORY_TRANSITION.TEXT_SPEED)
     })
   }
 }
@@ -277,6 +282,13 @@ class EventManager {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  EventManager.init()
-})
+async function initCockpit() {
+  try {
+    await loadConfig()
+    EventManager.init()
+  } catch (err) {
+    console.error(`Error during cockpit init`, err)
+  }
+}
+
+document.addEventListener('DOMContentLoaded', initCockpit)
