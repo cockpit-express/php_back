@@ -103,6 +103,6 @@
       <div class="extra-cockpit-height"></div>
     </main>
 
-    <script src="./assets/js/cockpit.js"></script>
+    <script type="module" src="./assets/js/cockpitIndex.js"></script>
   </body>
 </html>
