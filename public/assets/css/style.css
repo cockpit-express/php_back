@@ -775,23 +775,87 @@ button {
 .windshield-content-box-placesmod-extend {
   border-radius: 0px !important;
   transition: border-radius 0.5s ease;
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(60px);
 }
 
 .places-box {
-  padding: 0px 100px;
-  gap: 20px;
+  padding: 40px 10vw;
+  gap: 40px;
   display: none;
+  flex-direction: column;
+}
+.places-box .places-header {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: center;
+}
+.places-box .places-header h1 {
+  font-size: 22px;
+}
+.places-box .places-cards-box {
+  display: flex;
+  gap: 20px;
   flex-wrap: wrap;
 }
-.places-box .place-item {
-  background-color: rgb(250, 250, 250);
-  font-size: 14px;
+.places-box .places-cards-box .place-card {
   flex: 1 1 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 10px;
+  background-color: #fff;
+  font-size: 14px;
+  padding: 15px;
 }
-.places-box .place-item .place-image {
+.places-box .places-cards-box .place-card .place-name {
+  font-weight: bold;
+}
+.places-box .places-cards-box .place-card .place-type-box {
+  display: flex;
+}
+.places-box .places-cards-box .place-card .place-type-box p {
+  color: #fff;
+  font-size: 12px;
+  background-color: #5170aa;
+  padding: 4px 8px;
+  border-radius: 100px;
+}
+.places-box .places-cards-box .place-card .place-image {
   width: 100%;
   height: 200px;
   object-fit: cover;
+  border-radius: 10px;
+}
+.places-box .places-cards-box .place-card .place-links-box {
+  display: flex;
+  gap: 10px;
+}
+.places-box .places-cards-box .place-card .place-links-box a {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  text-align: center;
+  gap: 7px;
+  padding: 10px;
+}
+.places-box .places-cards-box .place-card .place-links-box a.streetview-link {
+  border-radius: 10px;
+  background-color: #5170aa;
+  color: #fff;
+}
+.places-box .places-cards-box .place-card .place-links-box a.google-link {
+  color: #5170aa;
+}
+.places-box .places-cards-box .place-card .place-links-box a span {
+  font-size: 14px;
+}
+.places-box p, .places-box h1 {
+  margin: 0px;
 }
 
 .story-box {

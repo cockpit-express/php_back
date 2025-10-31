@@ -30,6 +30,7 @@ const DOM = {
   placesList: {
     containers: {
       box: document.getElementById('places-box'),
+      cardsBox: document.getElementById('places-cards-box')
     }
   }
 }

@@ -10,23 +10,101 @@
 .windshield-content-box-placesmod-extend {
   border-radius: 0px !important;
   transition: border-radius 0.5s ease;
+
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(60px); 
+  -webkit-backdrop-filter: blur(60px); 
 }
 
 .places-box {
-  padding: 0px 100px;
-  gap: 20px;
+  padding: 40px 10vw;
+  gap: 40px;
   display: none; // Toggle none/flex
-  flex-wrap: wrap;
+  flex-direction: column;
 
-  .place-item {
-    background-color: rgb(250, 250, 250);
-    font-size: 14px;
-    flex: 1 1 300px;
+  .places-header {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
 
-    .place-image {
-      width: 100%;
-      height: 200px;
-      object-fit: cover; 
+    h1 {
+      font-size: 22px;
     }
+  }
+
+  .places-cards-box {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+
+    .place-card {
+      flex: 1 1 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border-radius: 10px;
+      background-color: #fff;
+      font-size: 14px;
+      padding: 15px;
+
+      .place-name {
+        font-weight: bold;
+        // text-wrap
+      }
+
+      .place-type-box {
+        display: flex;
+
+        p {
+          color: #fff;
+          font-size: 12px;
+          background-color: #5170aa;
+          padding: 4px 8px;
+          border-radius: 100px;
+        }
+      }
+
+      .place-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover; 
+        border-radius: 10px;
+      }
+
+      .place-links-box {
+        display: flex;
+        gap: 10px;
+
+        a {
+          flex: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-decoration: none;
+          text-align: center;
+          gap: 7px;
+          padding: 10px;
+
+          &.streetview-link {
+            border-radius: 10px;
+            background-color: #5170aa;
+            color: #fff;
+          }
+
+          &.google-link {
+            color: #5170aa;
+          }
+
+          span {
+            font-size: 14px; 
+          }
+        }
+      }
+    }
+  }
+
+  p, h1 {
+    margin: 0px;
   }
 }

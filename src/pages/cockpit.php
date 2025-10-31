@@ -49,7 +49,15 @@
                   </div>
                 </div>
 
-                <div class="places-box" id="places-box"></div>
+                <div class="places-box" id="places-box">
+                  <div class="places-header">
+                    <h1>Bienvenue en Gare de Troyes !</h1>
+
+                    <p>28 lieux uniques à découvrir...</p>
+                  </div>
+
+                  <div class="places-cards-box" id="places-cards-box"></div>
+                </div>
               </div>
             </div>
           </div>

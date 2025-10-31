@@ -35,7 +35,7 @@ export class PlacesManager {
     this.DOM.map.containers.subBox.style.display = 'none'
     this.DOM.story.containers.storyBox.style.display = 'flex'
     this.DOM.windshield.containers.contentSubBox.style.display = 'flex'
-    this.DOM.placesList.containers.box.innerHTML = ''
+    this.DOM.placesList.containers.cardsBox.innerHTML = ''
   }
 
   async loadPlacesWithMedia(places, placesWithoutMedia) {
@@ -68,17 +68,26 @@ export class PlacesManager {
 
   appendPlaceElement(place, imageURL = '#') {
     const placeDiv = document.createElement('div')
-    placeDiv.classList.add('place-item')
+    placeDiv.classList.add('place-card')
+
+    const googleSearchURL = `https://www.google.com/search?q=${encodeURIComponent(place.name + ' ' + place.city)}`
+    const streetViewURL = place.latitude && place.longitude
+      ? `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${place.latitude},${place.longitude}`
+      : '#'
 
     placeDiv.innerHTML = `
-      <div>
-        <p class="place-name">${place.name}</p>
-        <p class="place-type">${place.type}</p>
-        <p class="place-city">${place.city}</p>
-        <img class="place-image" src="${imageURL}" alt="${place.name}" />
+      <img class="place-image" src="${imageURL}" alt="${place.name}" />
+      <p class="place-name">${place.name}</p>
+      <p class="place-city">${place.address}, ${place.city}</p> 
+      <div class="place-type-box">
+        <p>${place.label ?? place.type}</p>
+      </div>
+      <div class="place-links-box">
+        <a class="streetview-link" href="${streetViewURL}" target="_blank"><span class="material-symbols-outlined">navigation</span> Street View</a>
+        <a class="google-link" href="${googleSearchURL}" target="_blank"><span class="material-symbols-outlined">search</span> Google</a>
       </div>
     `
-    this.DOM.placesList.containers.box.appendChild(placeDiv)
+    this.DOM.placesList.containers.cardsBox.appendChild(placeDiv)
   }
 
   displayPlaces(placesWithoutMedia) {
