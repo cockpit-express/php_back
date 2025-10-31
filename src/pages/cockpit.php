@@ -51,9 +51,9 @@
 
                 <div class="places-box" id="places-box">
                   <div class="places-header">
-                    <h1>Bienvenue en Gare de Troyes !</h1>
+                    <h1 id="welcome-to-station-x"></h1>
 
-                    <p>28 lieux uniques à découvrir...</p>
+                    <p id="x-places-to-discover"></p>
                   </div>
 
                   <div class="places-cards-box" id="places-cards-box"></div>

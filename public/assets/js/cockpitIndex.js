@@ -31,6 +31,10 @@ const DOM = {
     containers: {
       box: document.getElementById('places-box'),
       cardsBox: document.getElementById('places-cards-box')
+    },
+    elements: {
+      welcomeToStationX: document.getElementById('welcome-to-station-x'),
+      xPlacesToDiscover: document.getElementById('x-places-to-discover')
     }
   }
 }

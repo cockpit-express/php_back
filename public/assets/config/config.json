@@ -11,7 +11,8 @@
     "ATTRIBUTION": "&copy; <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap</a>"
   },
   "PLACES": {
-    "RADIUS_KM": 5
+    "RADIUS_KM": 5,
+    "DEFAULT_IMAGE": "default_place.png"
   },
   "STORY_TRANSITION": {
     "STEPS": [

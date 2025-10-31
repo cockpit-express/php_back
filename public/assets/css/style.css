@@ -781,7 +781,7 @@ button {
 }
 
 .places-box {
-  padding: 40px 10vw;
+  padding: 40px 12vw;
   gap: 40px;
   display: none;
   flex-direction: column;
@@ -796,42 +796,58 @@ button {
   font-size: 22px;
 }
 .places-box .places-cards-box {
-  display: flex;
+  display: grid;
   gap: 20px;
-  flex-wrap: wrap;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 .places-box .places-cards-box .place-card {
-  flex: 1 1 300px;
+  flex: 0 1 300px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  justify-content: space-between;
+  gap: 20px;
   border-radius: 10px;
   background-color: #fff;
   font-size: 14px;
-  padding: 15px;
+  padding: 5px;
 }
-.places-box .places-cards-box .place-card .place-name {
-  font-weight: bold;
+.places-box .places-cards-box .place-card span {
+  font-size: 14px;
 }
-.places-box .places-cards-box .place-card .place-type-box {
+.places-box .places-cards-box .place-card .place-top-box {
   display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
-.places-box .places-cards-box .place-card .place-type-box p {
-  color: #fff;
-  font-size: 12px;
-  background-color: #5170aa;
-  padding: 4px 8px;
-  border-radius: 100px;
-}
-.places-box .places-cards-box .place-card .place-image {
+.places-box .places-cards-box .place-card .place-top-box .place-image {
   width: 100%;
-  height: 200px;
+  aspect-ratio: 5/3;
   object-fit: cover;
   border-radius: 10px;
+}
+.places-box .places-cards-box .place-card .place-top-box .place-infos-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0px 15px;
+}
+.places-box .places-cards-box .place-card .place-top-box .place-infos-box .place-name {
+  font-weight: bold;
+  font-size: 16px;
+}
+.places-box .places-cards-box .place-card .place-top-box .place-infos-box .place-address {
+  color: #969696;
+  font-size: 12px;
+}
+.places-box .places-cards-box .place-card .place-top-box .place-infos-box .place-address span {
+  vertical-align: middle;
+  margin-bottom: 2.5px;
+  margin-right: 7px;
 }
 .places-box .places-cards-box .place-card .place-links-box {
   display: flex;
   gap: 10px;
+  margin: 0px 15px 15px 15px;
 }
 .places-box .places-cards-box .place-card .place-links-box a {
   flex: 1;
@@ -841,18 +857,23 @@ button {
   text-decoration: none;
   text-align: center;
   gap: 7px;
-  padding: 10px;
 }
 .places-box .places-cards-box .place-card .place-links-box a.streetview-link {
-  border-radius: 10px;
-  background-color: #5170aa;
+  padding: 10px;
+  border-radius: 1000px;
+  background-color: #357cff;
   color: #fff;
 }
 .places-box .places-cards-box .place-card .place-links-box a.google-link {
-  color: #5170aa;
+  margin: 10px;
+  color: #357cff;
+  font-weight: 450;
+}
+.places-box .places-cards-box .place-card .place-links-box a.google-link:hover {
+  text-decoration: underline;
 }
 .places-box .places-cards-box .place-card .place-links-box a span {
-  font-size: 14px;
+  font-weight: bold;
 }
 .places-box p, .places-box h1 {
   margin: 0px;
