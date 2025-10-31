@@ -10,10 +10,17 @@ export class EventManager {
   }
 
   init() {
+    this.setupCockpitOpenBtn()
     this.setupMapOpenBtns()
     this.setupMapCloseBtn()
     this.setupMapClickOutside()
     this.setupEscapeKey()
+  }
+
+  setupCockpitOpenBtn() {
+    this.DOM.home.buttons.openCockpit.addEventListener('click', () => {
+      this.openCockpit()
+    })
   }
 
   setupMapOpenBtns() {
@@ -49,6 +56,10 @@ export class EventManager {
         this.closeMap()
       }
     })
+  }
+
+  openCockpit() {
+    this.DOM.home.containers.homeSec.style.height = '0px'
   }
 
   closeMap() {

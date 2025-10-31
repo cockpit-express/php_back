@@ -2,6 +2,14 @@ import { loadConfig } from "./config/loadConfig.js"
 import { EventManager } from "./cockpit/EventsManager.js"
 
 const DOM = {
+  home: {
+    containers: {
+      homeSec: document.getElementById('home-sec')
+    },
+    buttons: {
+      openCockpit: document.getElementById('cockpit-access-btn')
+    }
+  },
   map: {
     buttons: {
       open: document.querySelectorAll('.map-open'),

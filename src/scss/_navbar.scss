@@ -1,0 +1,58 @@
+.nav-sec {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  font-size: 14px;
+  margin-top: 2vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  ul {
+    display: flex;
+    padding: 12px 25px;
+    border-radius: 1000px;
+    background-color: #fff;
+    gap: 15px;
+    margin: 0px;
+    transition: padding 0.1s ease;
+
+    &:hover {
+      padding: 12px 50px;
+    }
+
+    li {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    
+      a {
+        text-decoration: none;
+        white-space: nowrap;
+        color: #000;
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      span {
+        font-size: 14px;
+      }
+    }
+
+    .separator-box {
+      display: flex;
+      align-items: center;
+
+      span {
+        width: 1px;
+        height: 10px;
+        background-color: #000;
+      }
+    }
+  }
+}
