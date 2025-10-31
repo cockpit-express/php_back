@@ -33,6 +33,11 @@ export class PlacesManager {
   }
 
   prepareUI(stationData, places) {
+    this.DOM.placesList.containers.box.style.display = 'none'
+    this.DOM.windshield.containers.contentSubBox.classList.remove('windshield-content-sub-box-placesmod-init')
+    this.DOM.windshield.containers.contentSubBox.classList.remove('windshield-content-sub-box-placesmod-extend')
+    this.DOM.windshield.containers.contentBox.classList.remove('windshield-content-box-placesmod-extend')
+
     this.DOM.map.containers.subBox.style.display = 'none'
     this.DOM.story.containers.storyBox.style.display = 'flex'
     
