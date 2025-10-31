@@ -8,11 +8,13 @@
     public $timestamps = false;
 
     protected $fillable = [
-      'name',        // string
-      'type',        // string
-      'address',     // string
-      'postal_code', // int
-      'latitude',    // float
-      'longitude'    // float
+      'name',            // string
+      'type',            // string
+      'address',         // string
+      'postal_code',     // int
+      'latitude',        // float
+      'longitude',       // float
+      'region_code',     // int
+      'departement_code' // int
     ];
   }

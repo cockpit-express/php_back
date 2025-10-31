@@ -41,7 +41,9 @@ CREATE TABLE places (
   city VARCHAR(255) NULL,
   address TEXT NULL,
   latitude DOUBLE NOT NULL,
-  longitude DOUBLE NOT NULL
+  longitude DOUBLE NOT NULL,
+  region_code VARCHAR(255) NULL,
+  departement_code VARCHAR(255) NULL
 );
 ```
 

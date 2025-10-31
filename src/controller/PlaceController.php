@@ -31,4 +31,10 @@
         echo json_encode(['error' => "Place {$id} not found"]);
       }
     }
+
+    public static function countByRegion(): void {
+      $counts = PlaceRepositry::countByRegionWithTypes();
+      header('Content-Type: application/json; charset=utf-8');
+      echo json_encode($counts);
+    }
   }

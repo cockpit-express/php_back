@@ -1,43 +1,28 @@
+<?php 
+  $regionCountData = json_decode(file_get_contents('http://localhost/saews303d/public/api/places/count-by-region'), true); 
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device‑width, initial-scale=1.0">
     <title>Cockpit Express</title>
+
     <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@1" rel="stylesheet" />
+    <script src="https://d3js.org/d3.v7.min.js"></script>
   </head>
 
-  <body class="datapage">
-    <header class="site-header">
-      <div class="container">
-        <h1 class="logo">Découvertes proches de vos gares</h1>
-        <nav class="main-nav">
-          <ul>
-            <li><a href="./home">Accueil</a></li>
-          <li><a href="./cockpit">Cockpit</a></li>
-          <li><a href="./data">Graphiques</a></li>
-          <li><a href="#">à propos</a></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+  <body>
+    <?php include './components/navbar.php' ?>
 
-    <div id="map" style="height:55vh"></div>
+    <svg id="region-count-chart" width="800" height="400"></svg>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script>
+      window.regionCountData = <?php echo json_encode($regionCountData); ?>;
+    </script>
 
     <script src="./assets/js/datapage.js"></script>
-
-    <footer class="site‑footer">
-      <div class="container">
-        <p>© 2025. Tous droits réservés.</p>
-      <a href="https://www.example.com">Confidentialités</a>
-      </div>
-    </footer>
   </body>
 </html>

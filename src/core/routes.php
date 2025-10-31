@@ -21,6 +21,7 @@
   // API REST
 
   $router
+    // Stations
     ->get('/api/stations', function() use ($controllers) {
       require_once "{$controllers}StationController.php"; 
       \Controller\StationController::getMany();
@@ -30,9 +31,14 @@
       \Controller\StationController::getById($id);
     })
 
+    // Places
     ->get('/api/places', function() use ($controllers) {
       require_once "{$controllers}PlaceController.php"; 
       \Controller\PlaceController::getMany();
+    })
+    ->get('/api/places/count-by-region', function() use ($controllers): void {
+      require_once "{$controllers}PlaceController.php";
+      \Controller\PlaceController::countByRegion();
     })
     ->get('/api/places/{id}', function($id) use ($controllers) {
       require_once "{$controllers}PlaceController.php"; 
