@@ -1,0 +1,38 @@
+.about-sec {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #4e4e4e;
+
+  h4, h1, p {
+    margin: 0px;
+  }
+
+  header {
+    text-align: center;
+    margin: 120px 0px 70px 0px;
+    background-color: #f2f7ff;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px 15vw;
+    color: #357cff;
+
+    h1 {
+      font-size: 22px;
+      font-weight: 500;
+
+      span {
+        font-size: 22px;
+        vertical-align: middle;
+        margin-bottom: 2.5px;
+      }
+    }
+  }
+
+  .articles {
+    padding: 0px 15vw;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}

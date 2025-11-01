@@ -139,6 +139,11 @@ body, input {
   font-size: 22px;
   font-weight: 500;
 }
+.data-sec .header h1 span {
+  font-size: 22px;
+  vertical-align: middle;
+  margin-bottom: 2.5px;
+}
 .data-sec .charts-box {
   display: flex;
   flex-direction: column;
@@ -618,6 +623,40 @@ button {
 }
 .places-box p, .places-box h1 {
   margin: 0px;
+}
+
+.about-sec {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #4e4e4e;
+}
+.about-sec h4, .about-sec h1, .about-sec p {
+  margin: 0px;
+}
+.about-sec header {
+  text-align: center;
+  margin: 120px 0px 70px 0px;
+  background-color: #f2f7ff;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 30px 15vw;
+  color: #357cff;
+}
+.about-sec header h1 {
+  font-size: 22px;
+  font-weight: 500;
+}
+.about-sec header h1 span {
+  font-size: 22px;
+  vertical-align: middle;
+  margin-bottom: 2.5px;
+}
+.about-sec .articles {
+  padding: 0px 15vw;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .story-box {

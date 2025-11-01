@@ -21,7 +21,7 @@
 
     <main class="data-sec">
       <div class="header">
-        <h1>Données globales</h1>
+        <h1><span class="material-symbols-outlined">grouped_bar_chart</span> Données globales</h1>
 
          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took.</p>
       </div>
