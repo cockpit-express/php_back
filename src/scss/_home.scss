@@ -1,465 +1,70 @@
-// Variables
-$primary-colour: #0055a4;
-$secondary-colour: #000000;
-$accent-colour: #f2c200;
-$font‑base: 'Arial', sans‑serif;
-
-body {
-  // font-family: 'FOLIOB', sans-serif !important;
-  margin: 0;
-  // font-family: $font‑base;
-  color: #333;
-}
-
-@font-face {
-  font-family: 'FOLIOB';
-  src: url('../fonts/FOLIOB.ttf') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-h3 {
-  // font-family: 'FOLIOB';
-color: gray;}
-
-h1 {
-  // font-family: 'FOLIOB';
-}
-
-.container {
-  align-items: center;
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.bannerimage {
-  margin-top: 4rem;
-  display: flex;
-  justify-content: center;
-  margin: 2rem auto;
-  max-width: 100%;
-  img {
-    width: 100%;
-    height: auto;
-    max-width: 1000px; 
-  }
-}
-
-.bannerimage {
-  position: relative;
-  max-height: 800px;
-  max-width: none;
-  opacity: 1;
+.home-sec {
+  position: absolute;
   overflow: hidden;
-  transition: max-height 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
-
-  img {
-    width: 100%;
-    max-width: 1200px;
-    height: auto;
-    border-radius: 6px;
-  }
-
-  &.hidden {
-    max-height: 0;
-    opacity: 0;
-    transform: translateY(-100%);
-    pointer-events: none;
-  }
-}
-
-.banner-wrapper {
-  position: relative;
   display: flex;
-  justify-content: center;
-  align-items: center; // centre verticalement
-  margin: 2rem auto;
-
-  #toggleBanner {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translate(-50%, -50%); // centre exact
-    background: $primary-colour;
-    color: $secondary-colour;
-    border: none;
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
-    cursor: pointer;
-    border-radius: 6px;
-    transition: background 0.3s ease, transform 0.3s ease;
-
-    &:hover {
-      background: darken($primary-colour, 10%);
-      transform: translate(-50%, -50%) scale(1.05); // effet hover subtil
-    }
-  }
-}
-
-.site-header {
-  background: $primary-colour;
-  color: $secondary-colour;
-  .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem 0;
-  }
-  .logo {
-    font-size: 1.8rem;
-    margin: 0;
-  }
-  .main-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    li {
-      margin-left: 1.5rem;
-      a {
-        color: $secondary-colour;
-        text-decoration: none;
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-    }
-  }
-}
-
-.hero {
-  background: url('hero‑image.jpg') center/cover no‑repeat;
-  color: gray;
-  text-align: center;
-  padding: 4rem 0;
-  h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
-  p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-  }
-  .cta {
-    z-index: 100;
-    background: $accent-colour;
-    border: none;
-    padding: 0.8rem 2rem;
-    font-size: 1rem;
-    color: #333;
-    cursor: pointer;
-    &:hover {
-      background: darken($accent-colour, 10%);
-    }
-  }
-}
-
-.featured‑monuments {
-  padding: 3rem 0;
-  h3 {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-  }
-  .carousel {
-    display: flex;
-    overflow-x: auto;
-    gap: 1rem;
-    .item {
-      flex: 0 0 300px;
-      background: #fff;
-      border: 1px solid #eee;
-      border-radius: 4px;
-      overflow: hidden;
-      img {
-        width: 100%;
-        display: block;
-      }
-      .info {
-        padding: 1rem;
-        h4 {
-          margin: 0 0 0.5rem;
-          font-size: 1.2rem;
-        }
-        p {
-          margin: 0;
-          font-size: 0.9rem;
-          color: #666;
-        }
-      }
-    }
-  }
-}
-
-.browse‑by‑style {
-  background: #f7f7f7;
-  padding: 3rem 0;
-  h3 {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    text-align: center;
-  }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
-    gap: 1rem;
-    .grid‑item {
-      background: #fff;
-      text-align: center;
-      padding: 2rem 1rem;
-      a {
-        text-decoration: none;
-        font-size: 1.1rem;
-        color: $primary-colour;
-        &:hover {
-          color: darken($primary-colour, 10%);
-        }
-      }
-    }
-  }
-}
-
-.site‑footer {
-  background: #222;
-  color: #ccc;
-  text-align: center;
-  padding: 2rem 0;
-  p {
-    margin: 0;
-    font-size: 0.9rem;
-  }
-}
-
-// Couleurs thème
-$day-bg: #ffffff;
-$day-text: #333333;
-$night-bg: #1c1c1e;
-$night-text: #f2f2f2;
-$toggle-on: #007aff; // bleu Apple
-$toggle-off: #e5e5ea;
-
-// Body thème jour/nuit
-body {
-  margin: 0;
-  // font-family: 'Arial', sans-serif;
-  background-color: $day-bg;
-  color: $day-text;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-body.night {
-  background-color: $night-bg;
-  color: $night-text;
-}
-
-// Toggle switch Apple-like
-.theme-switcher {
-  display: inline-block;
-  margin: 1rem;
-
-  input[type="checkbox"] {
-    display: none; // cacher le checkbox réel
-  }
-
-  .switch {
-    position: relative;
-    display: inline-block;
-    width: 50px;
-    height: 28px;
-    background-color: $toggle-off;
-    border-radius: 34px; // fond arrondi
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-
-    .slider {
-      position: absolute;
-      top: 2px;
-      left: 2px;
-      width: 24px;
-      height: 24px;
-      background-color: white;
-      border-radius: 50%; // cercle arrondi
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease, background-color 0.3s ease;
-    }
-  }
-
-  // Quand le checkbox est coché
-  input:checked + .switch {
-    background-color: $toggle-on;
-
-    .slider {
-      transform: translateX(22px); // décalage du cercle
-    }
-  }
-}
-
-.language-switcher {
-  position: relative;
-  display: inline-block;
-
-  #langBtn {
-    background: #0055a4;
-    border: none;
-    padding: 0.4rem 0.6rem;
-    border-radius: 50%;
-    cursor: pointer;
-    img {
-      width: 3rem;
-      border-radius: 50%;
-      border: 1px solid #fff;
-    }
-  }
-
-  .lang-popup {
-    position: absolute;
-    top: 210%;
-    left: 50%;
-    transform: translateX(-50%);
-    display: none;
-    flex-direction: column;
-    gap: 0.5rem;
-    background: rgba(255,255,255,0.95);
-    border-radius: 12px;
-    padding: 0.5rem 1rem;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-    z-index: 100;
-
-    &.expanded {
-      display: flex;
-    }
-
-    .lang-option {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.3rem 0.6rem;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.25s ease;
-
-      &:hover {
-        background: #0055a4;
-        color: white;
-      }
-
-      img {
-        width: 1.4rem;
-        border-radius: 50%;
-        border: 1px solid #ddd;
-      }
-    }
-  }
-}
-
-/* Hamburger button */
-.hamburger {
-  display: none; /* caché par défaut */
   flex-direction: column;
   justify-content: space-between;
-  width: 28px;
-  height: 22px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
+  align-items: center;
+  background-color: #ffffff72;
+  backdrop-filter: blur(60px); 
+  -webkit-backdrop-filter: blur(60px); 
+  z-index: 2;
+  width: 100%;
+  height: 100vh;
+  transition: height 0.3s ease;
+  font-size: 14px;
+  text-align: center;
+  padding: 0px 5vh;
 
-  span {
-    display: block;
-    height: 3px;
-    width: 100%;
-    background: $secondary-colour;
-    border-radius: 2px;
-    transition: 0.3s;
-  }
-}
-
-/* === Responsive styles === */
-@media (max-width: 768px) {
-  .hamburger {
-    display: flex; /* affiché sur mobile */
+  h1, p {
+    margin: 0px;
   }
 
-  .site-header .main-nav {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: $primary-colour;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-    z-index: 1000;
-  }
-
-  .site-header .main-nav.open {
-    max-height: 500px; /* ajuster selon le nombre d’items */
-  }
-
-  .site-header .main-nav ul {
-    flex-direction: column;
-  }
-
-  .site-header .main-nav li {
-    border-bottom: 1px solid darken($primary-colour, 10%);
-    margin: 0;
-  }
-
-  .site-header .main-nav li a {
-    display: block;
-    padding: 1rem;
-    color: $secondary-colour;
-  }
-}
-
-/* Menu hamburger avec rectangles */
-@media (max-width: 768px) {
-  .site-header .main-nav {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: $primary-colour;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-    z-index: 1000;
+  .home-content {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
+    align-items: center;
+    gap: 35px;
+
+    .cockpit-access-btn {
+      cursor: pointer;
+      border: none;
+      padding: 20px 35px;
+      border-radius: 1000px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 17px;
+      transition: 0.1s ease;
+      background-color: #357cff;
+      color: #fff;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+
+      span {
+        font-size: 20px;
+      }
+    }
   }
 
-  .site-header .main-nav.open {
-    max-height: 500px; /* ajuster selon le nombre d’items */
-  }
+  .credits-p {
+    margin-bottom: 2vh;
+    color: #515151;
 
-  .site-header .main-nav ul {
-    flex-direction: column;
-    padding: 0;
-    margin: 0;
-  }
+    a {
+      color: #515151;
+      text-decoration: none;
 
-  .site-header .main-nav li {
-    margin: 0;
-  }
+      span:first-of-type:hover {
+        text-decoration: underline;
+      }
+    }
 
-  .site-header .main-nav li a {
-    display: block;
-    background: $secondary-colour;
-    color: $primary-colour;
-    text-align: center;
-    padding: 0.8rem 1rem;
-    border-radius: 6px;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-    text-decoration: none;
-    transition: background 0.3s, color 0.3s;
-
-    &:hover {
-      background: darken($secondary-colour, 10%);
-      color: $accent-colour;
+    .material-symbols-outlined {
+      font-size: 12px;
     }
   }
 }

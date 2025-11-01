@@ -11,11 +11,12 @@
   // Pages
 
   $router
-    ->get('/', fn() => require "{$pages}home.php")
-    ->get('/home', fn() => require "{$pages}home.php")
+    ->get('/', fn() => require "{$pages}cockpit.php")
+    ->get('/home', fn() => require "{$pages}cockpit.php")
     ->get('/cockpit', fn() => require "{$pages}cockpit.php")
     ->get('/test', fn() => require "{$pages}test.php")
     ->get('/data', fn() => require "{$pages}data.php")
+    ->get('/a-propos', fn() => require "{$pages}about.php")
     ->get('/api', fn() => require "{$pages}api.php");
 
   // API REST

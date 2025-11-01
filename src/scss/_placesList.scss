@@ -17,7 +17,7 @@
 }
 
 .places-box {
-  padding: 40px 12vw;
+  padding: 65px 12vw 65px 12vw;
   gap: 40px;
   display: none; // Toggle none/flex
   flex-direction: column;
@@ -27,9 +27,20 @@
     flex-direction: column;
     gap: 20px;
     text-align: center;
+    margin: 20px 0px;
 
     h1 {
       font-size: 22px;
+      font-weight: 500;
+
+      span {
+        color: #357cff;
+      }
+    }
+
+    p span {
+      color: #357cff;
+      font-weight: 450;
     }
   }
 
@@ -37,6 +48,56 @@
     display: grid;
     gap: 20px;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+    .chart-card {
+      font-size: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      .chart {
+        background-color: #f5f5f5;
+        border-radius: 10px;
+      }
+
+      .chart-infos {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin: 0px 15px 15px 15px;
+
+        .chart-info-top {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+
+          .chart-name {
+            font-weight: bold;
+            font-size: 16px;
+          }
+
+          .chart-desc {
+            color: #969696;
+            font-size: 12px;
+
+            span {
+              vertical-align: middle;
+              margin-bottom: 2.5px;
+              margin-right: 7px;
+            }
+          }
+        }
+
+        .chart-footer {
+          text-align: center;
+          color: #357cff;
+          font-weight: 450;
+          margin-bottom: 10px;
+          font-style: italic;
+        }
+      }
+    }
 
     .place-card {
       flex: 0 1 300px;
