@@ -23,7 +23,7 @@
       <div class="home-content">
         <h1>Cockpit.io</h1>
 
-        <p>Voici comment le faire proprement en JavaScript. Voici comment le faire proprement en JavaScript</p>
+        <p>Explorez la France et ses sites culturels depuis n'importe quelle gare ! La culture à portée de rails.</p>
 
         <button class="cockpit-access-btn" id="cockpit-access-btn" type="button">
           <span class="material-symbols-outlined">map</span> 
@@ -59,7 +59,7 @@
     <main class="cockpit-sec">
       <div class="screen">
         <?php include './components/navbar.php' ?>
-        
+
         <div class="map-sub-box" id="map-sub-box">
           <div class="map-box" id="map-box">
             <div class="map-header">

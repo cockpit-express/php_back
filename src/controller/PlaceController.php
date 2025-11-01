@@ -32,6 +32,12 @@
       }
     }
 
+    public static function countByType(): void {
+      $counts = PlaceRepositry::countByType();
+      header('Content-Type: application/json; charset=utf-8');
+      echo json_encode($counts);
+    }
+
     public static function countByRegion(): void {
       $counts = PlaceRepositry::countByRegionWithTypes();
       header('Content-Type: application/json; charset=utf-8');

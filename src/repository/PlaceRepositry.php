@@ -36,6 +36,21 @@
       return Place::find($id);
     }
 
+    public static function countByType(): array {
+      $rows = Place::query()
+        ->selectRaw('type, COUNT(*) as count')
+        ->groupBy('type')
+        ->orderBy('type')
+        ->get();
+
+      $result = [];
+      foreach ($rows as $row) {
+        $type = $row->type ?? 'unknown';
+        $result[$type] = (int) $row->count;
+      }
+      return $result;
+    }
+
     public static function countByRegionWithTypes(): array {
       $rows = Place::query()
         ->selectRaw('region_code, type, COUNT(*) as count')

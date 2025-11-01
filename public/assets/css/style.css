@@ -436,6 +436,7 @@ body.night {
   gap: 15px;
   margin: 0px;
   transition: padding 0.1s ease;
+  box-shadow: 0 0 20px -5px rgba(0, 0, 0, 0.2078431373);
 }
 .nav-sec ul:hover {
   padding: 12px 50px;
@@ -530,71 +531,61 @@ body.night {
   font-size: 12px;
 }
 
-.datapage {
-  margin: 0;
-  background: #f5f7fb;
-  color: #222;
+.data-sec {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #4e4e4e;
 }
-.datapage header, .datapage footer {
+.data-sec h4, .data-sec h1, .data-sec p {
+  margin: 0px;
+}
+.data-sec .header {
   text-align: center;
-  background: #0b74d1;
-  color: #fff;
-  padding: 10px 0;
-}
-.datapage .controls {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  padding: 10px;
-  background: #eef6ff;
-  border-bottom: 1px solid #d0e7ff;
-}
-.datapage .container {
-  display: flex;
-  gap: 12px;
-  padding: 12px;
-  align-items: flex-start;
-}
-.datapage #map {
-  flex: 1 1 60%;
-  height: 640px;
-  border-radius: 8px;
-  border: 2px solid #0b74d1;
-  overflow: hidden;
-}
-.datapage #charts {
-  flex: 0 1 35%;
+  margin: 120px 0px 70px 0px;
+  background-color: #f2f7ff;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 20px;
+  padding: 30px 15vw;
+  color: #357cff;
 }
-.datapage .chartBox {
-  background: #fff;
-  border-radius: 8px;
-  border: 2px solid #0b74d1;
-  padding: 8px;
-  height: 300px;
+.data-sec .header h1 {
+  font-size: 22px;
+  font-weight: 500;
+}
+.data-sec .charts-box {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  gap: 20px;
 }
-.datapage .chartBox svg {
+.data-sec .charts-box .chart-and-infos {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.data-sec .charts-box .chart-and-infos .infos-box {
+  padding: 0px 15vw;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.data-sec .charts-box .chart-and-infos .infos-box h4 {
+  font-size: 18px;
+  font-weight: 500;
+}
+.data-sec .charts-box .chart-and-infos .chart-box {
+  padding: 0px 15vw;
+  background-color: #f2f7ff;
+  margin-bottom: 20px;
+}
+.data-sec .charts-box .chart-and-infos .chart-box#type-count-chart-box {
+  padding: 0px 12vw;
+}
+.data-sec .charts-box .chart-and-infos .chart-box .chart {
   width: 100%;
-  height: 100%;
-}
-@media (max-width: 900px) {
-  .datapage .container {
-    flex-direction: column;
-  }
-  .datapage #map {
-    height: 480px;
-    width: 100%;
-  }
-  .datapage #charts {
-    width: 100%;
-  }
+  height: auto;
+  max-width: 100vw;
+  display: block;
 }
 
 * {

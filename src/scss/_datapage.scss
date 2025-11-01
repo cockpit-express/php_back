@@ -1,71 +1,66 @@
-.datapage {
-  // * { box-sizing: border-box; }
-  margin: 0;
-  // font-family: Arial, Helvetica, sans-serif;
-  background: #f5f7fb;
-  color: #222;
+.data-sec {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #4e4e4e;
 
+  h4, h1, p {
+    margin: 0px;
+  }
 
-  header, footer {
+  .header {
     text-align: center;
-    background: #0b74d1;
-    color: #fff;
-    padding: 10px 0;
-  }
-
-
-  .controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    padding: 10px;
-    background: #eef6ff;
-    border-bottom: 1px solid #d0e7ff;
-  }
-
-  .container {
-    display: flex;
-    gap: 12px;
-    padding: 12px;
-    align-items: flex-start;
-  }
-
-
-  #map {
-    flex: 1 1 60%;
-    height: 640px; 
-    border-radius: 8px;
-    border: 2px solid #0b74d1;
-    overflow: hidden;
-  }
-
-  #charts {
-    flex: 0 1 35%;
+    margin: 120px 0px 70px 0px;
+    background-color: #f2f7ff;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 20px;
+    padding: 30px 15vw;
+    color: #357cff;
+
+    h1 {
+      font-size: 22px;
+      font-weight: 500;
+    }
   }
 
-
-  .chartBox {
-    background: #fff;
-    border-radius: 8px;
-    border: 2px solid #0b74d1;
-    padding: 8px;
-    height: 300px;
+  .charts-box {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
+    gap: 20px;
 
+    .chart-and-infos {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
 
-  .chartBox svg { width: 100%; height: 100%; }
+      .infos-box {
+        padding: 0px 15vw;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
 
-  @media (max-width: 900px) {
-    .container { flex-direction: column; }
-    #map { height: 480px; width: 100%; }
-    #charts { width: 100%; }
+        h4 {
+          font-size: 18px;
+          font-weight: 500;
+        }
+      }
+
+      .chart-box {
+        padding: 0px 15vw;
+        background-color: #f2f7ff;
+        margin-bottom: 20px;
+
+        &#type-count-chart-box {
+          padding: 0px 12vw;
+        }
+
+        .chart {
+          width: 100%;
+          height: auto;         
+          max-width: 100vw;      
+          display: block;
+        }
+      }
+    }
   }
 }

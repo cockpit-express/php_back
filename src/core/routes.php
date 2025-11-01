@@ -36,6 +36,10 @@
       require_once "{$controllers}PlaceController.php"; 
       \Controller\PlaceController::getMany();
     })
+    ->get('/api/places/count-by-type', function() use ($controllers): void {
+      require_once "{$controllers}PlaceController.php";
+      \Controller\PlaceController::countByType();
+    })
     ->get('/api/places/count-by-region', function() use ($controllers): void {
       require_once "{$controllers}PlaceController.php";
       \Controller\PlaceController::countByRegion();
