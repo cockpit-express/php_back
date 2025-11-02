@@ -51,6 +51,7 @@ CREATE TABLE places (
 
 ## Structure
 
+
 ```
 saews303d
 ├─ bootstrap.php
@@ -65,15 +66,8 @@ saews303d
 │  │  │  ├─ style.css
 │  │  │  └─ style.css.map
 │  │  ├─ fonts
-│  │  │  └─ FOLIOB.ttf
 │  │  ├─ images
 │  │  │  ├─ icons
-│  │  │  │  ├─ de.png
-│  │  │  │  ├─ en.png
-│  │  │  │  ├─ es.png
-│  │  │  │  ├─ fr.png
-│  │  │  │  ├─ it.png
-│  │  │  │  └─ jp.png
 │  │  │  └─ illustrations
 │  │  │     ├─ default_place.png
 │  │  │     ├─ france_map_flat.svg
