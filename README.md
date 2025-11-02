@@ -1,8 +1,10 @@
 # SAE WS303D
 
+Project link : https://ws303d.mmi24c16.mmi-troyes.fr/
+
 ## Datasets
 
-- Train stations : https://data.sncf.com/explore/dataset/gares-de-voyageurs/information/?disjunctive.segment_drg
+- Train stations : https://defis.data.gouv.fr/datasets/65d81858179dc96581d981db
 - Touristic places : https://defis.data.gouv.fr/datasets/61777ddaa9101d073e5506cd
 
 ## Help
@@ -18,7 +20,7 @@ Regénération auto load
 
 ## Libraries
 
-`illuminate/database` (Eloquent ORM)
+`illuminate/database` (Eloquent ORM - from Laravel)
 `vlucas/phpdotenv`
 
 ## SQL
@@ -57,29 +59,70 @@ saews303d
 ├─ public
 │  ├─ .htaccess
 │  ├─ assets
+│  │  ├─ config
+│  │  │  └─ config.json
 │  │  ├─ css
 │  │  │  ├─ style.css
 │  │  │  └─ style.css.map
+│  │  ├─ fonts
+│  │  │  └─ FOLIOB.ttf
 │  │  ├─ images
 │  │  │  ├─ icons
+│  │  │  │  ├─ de.png
+│  │  │  │  ├─ en.png
+│  │  │  │  ├─ es.png
+│  │  │  │  ├─ fr.png
+│  │  │  │  ├─ it.png
+│  │  │  │  └─ jp.png
 │  │  │  └─ illustrations
-│  │  │     └─ cockpit.svg
+│  │  │     ├─ default_place.png
+│  │  │     ├─ france_map_flat.svg
+│  │  │     └─ rails_landscape_1.png
 │  │  └─ js
-│  │     └─ script.js
+│  │     ├─ cockpit
+│  │     │  ├─ EventsManager.js
+│  │     │  ├─ MapManager.js
+│  │     │  ├─ PlacesManager.js
+│  │     │  └─ StoryManager.js
+│  │     ├─ cockpitIndex.js
+│  │     ├─ config
+│  │     │  └─ loadConfig.js
+│  │     ├─ datapage.js
+│  │     ├─ script.js
+│  │     └─ utils
+│  │        └─ basics.js
+│  ├─ components
+│  │  ├─ footer.php
+│  │  └─ navbar.php
 │  └─ index.php
 └─ src
    ├─ controller
+   │  ├─ PlaceController.php
    │  └─ StationController.php
    ├─ core
    │  ├─ Router.php
    │  └─ routes.php
    ├─ model
+   │  ├─ Place.php
    │  └─ Station.php
    ├─ pages
+   │  ├─ about.php
+   │  ├─ api.php
    │  ├─ cockpit.php
-   │  └─ home.php
+   │  └─ data.php
    ├─ repository
+   │  ├─ PlaceRepositry.php
    │  └─ StationRepository.php
    └─ scss
+      ├─ _about.scss
+      ├─ _cockpit.scss
+      ├─ _datapage.scss
+      ├─ _footer.scss
+      ├─ _home.scss
+      ├─ _layout.scss
+      ├─ _navbar.scss
+      ├─ _placesList.scss
+      ├─ _stationsMap.scss
+      ├─ _storyTransition.scss
       └─ style.scss
 ```
