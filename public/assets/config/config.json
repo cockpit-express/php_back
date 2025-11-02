@@ -1,6 +1,6 @@
 {
   "API": {
-    "BASE_URL": "http://localhost/saews303d/public/api",
+    "BASE_URL": "https://ws303d.mmi24c16.mmi-troyes.fr/api",
     "WIKIMEDIA_URL": "https://commons.wikimedia.org/w/api.php"
   },
   "MAP": {

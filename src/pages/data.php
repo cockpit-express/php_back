@@ -1,7 +1,7 @@
 <?php 
-  $regionCountData = json_decode(file_get_contents('http://localhost/saews303d/public/api/places/count-by-region'), true); 
-  $typeCountData = json_decode(file_get_contents('http://localhost/saews303d/public/api/places/count-by-type'), true); 
-  $stationsData = json_decode(file_get_contents('http://localhost/saews303d/public/api/stations'), true); 
+  $regionCountData = json_decode(file_get_contents('https://ws303d.mmi24c16.mmi-troyes.fr/api/places/count-by-region'), true); 
+  $typeCountData = json_decode(file_get_contents('https://ws303d.mmi24c16.mmi-troyes.fr/api/places/count-by-type'), true); 
+  $stationsData = json_decode(file_get_contents('https://ws303d.mmi24c16.mmi-troyes.fr/api/stations'), true); 
 ?>
 
 <!DOCTYPE html>
@@ -9,7 +9,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device‑width, initial-scale=1.0">
-    <title>Cockpit Express</title>
+    <title>Cockpit.io</title>
 
     <link rel="stylesheet" href="./assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@1" rel="stylesheet" />
