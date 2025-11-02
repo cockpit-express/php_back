@@ -86,7 +86,7 @@
 
           <ul>
             <li><b>Gamification du cockpit</b> : faire défiler le paysage et les rails via une vidéo en boucle. Inclure des sons d'ambiance. Rendre fonctionnel les boutons et la manette située au milieu du tableau de bord (afin de permettre à l’utilisateur de régler la vitesse du train ou encore d’émettre un bruit de klaxon).</li>
-            <li><b>Expérience utilisateur</b> : barre de recherche sur la carte interactive, possibilité d’afficher un historique des gares visitées.</li>
+            <li><b>Expérience utilisateur</b> : barre de recherche sur la carte interactive. Possibilité d’afficher un historique des gares visitées.</li>
             <li><b>Filtrage des données</b> : améliorer l’algorithme de sélection des lieux culturels pertinents.</li>
             <li><b>Accessibilité</b> : ajouter un mode sombre.</li>
           </ul>
