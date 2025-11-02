@@ -135,6 +135,9 @@ body, input {
   padding: 30px 15vw;
   color: #357cff;
 }
+.data-sec .header a {
+  color: #357cff;
+}
 .data-sec .header h1 {
   font-size: 22px;
   font-weight: 500;
@@ -235,7 +238,6 @@ body {
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.2980392157);
-  overflow: scroll;
 }
 .cockpit-sec .screen .windshield .windshield-landscape .windshield-content-sub-box .windshield-content-box {
   display: flex;
@@ -431,6 +433,7 @@ button {
   justify-content: center;
   border-radius: 1000px;
   width: 53px;
+  height: 53px;
   color: #9898a3;
   background-color: #fcfcfc;
   margin-right: 20px;
@@ -461,6 +464,7 @@ button {
 .windshield-content-sub-box-placesmod-init {
   align-items: start !important;
   transform: scale(0.1);
+  overflow-y: scroll;
 }
 .windshield-content-sub-box-placesmod-init.windshield-content-sub-box-placesmod-extend {
   transition: transform 0.5s ease-in-out;
@@ -657,6 +661,42 @@ button {
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+footer {
+  color: #357cff;
+  font-size: 14px;
+  text-align: center;
+  background-color: #f2f7ff;
+  display: flex;
+  flex-direction: column;
+  margin-top: 70px;
+}
+footer p {
+  margin: 0px;
+}
+footer .site-name {
+  padding: 20px 15vw 20px 15vw;
+  font-weight: 450;
+  background-color: #357cff;
+  color: #fff;
+}
+footer .bottom {
+  padding-bottom: 30px;
+  font-size: 12px;
+}
+footer .bottom .credits-p {
+  padding: 30px 15vw;
+}
+footer .bottom a {
+  text-decoration: none;
+  color: #357cff;
+}
+footer .bottom a span:first-of-type:hover {
+  text-decoration: underline;
+}
+footer .bottom a .material-symbols-outlined {
+  font-size: 14px;
 }
 
 .story-box {

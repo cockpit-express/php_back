@@ -66,11 +66,11 @@
             <div class="map-header">
               <span class="map-header-left"></span>
               
-              <div class="map-search-box">
+              <!-- <div class="map-search-box">
                 <span class="material-symbols-outlined">search</span>
 
                 <input type="text" name="station" id="stationInput" placeholder="Gare d'arrivée">
-              </div>
+              </div> -->
 
               <span class="close-map material-symbols-outlined" id="close-map">close</span>
             </div>

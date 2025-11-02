@@ -65,9 +65,9 @@ export class EventManager {
   closeMap() {
     this.DOM.map.containers.subBox.style.display = 'none'
 
-    if (this.mapManager) {
-      this.mapManager.destroy()
-      this.mapManager = null
-    }
+    // if (this.mapManager) {
+    //   this.mapManager.destroy()
+    //   this.mapManager = null
+    // }
   }
 }

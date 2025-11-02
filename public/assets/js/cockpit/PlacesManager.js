@@ -47,7 +47,7 @@ export class PlacesManager {
     this.DOM.windshield.containers.contentSubBox.style.display = 'flex'
     this.DOM.placesList.containers.cardsBox.innerHTML = ''
 
-
+// Partie graphique à retraivailler et à changer de place 
 
     const chartDiv = document.createElement('div')
     chartDiv.classList.add('place-card')

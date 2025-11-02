@@ -1,6 +1,7 @@
 .windshield-content-sub-box-placesmod-init {
   align-items: start !important;
   transform: scale(0.1);
+  overflow-y: scroll;
 
   &.windshield-content-sub-box-placesmod-extend {
     transition: transform 0.5s ease-in-out;

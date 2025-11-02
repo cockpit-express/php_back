@@ -1,0 +1,42 @@
+footer {
+  color: #357cff;
+  font-size: 14px;
+  text-align: center;
+  background-color: #f2f7ff;
+  display: flex;
+  flex-direction: column;
+  margin-top: 70px;
+
+  p {
+    margin: 0px;
+  }
+
+  .site-name {
+    padding: 20px 15vw 20px 15vw;
+    font-weight: 450;
+    background-color: #357cff;
+    color: #fff;
+  }
+
+  .bottom {
+    padding-bottom: 30px;
+    font-size: 12px;
+
+    .credits-p {
+      padding: 30px 15vw;
+    }
+
+    a {
+      text-decoration: none;
+      color: #357cff;
+
+      span:first-of-type:hover {
+        text-decoration: underline;
+      }
+
+      .material-symbols-outlined {
+        font-size: 14px;
+      }
+    }
+  }
+}

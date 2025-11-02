@@ -243,8 +243,10 @@ const typeCountData = window.typeCountData
 const entries = Object.entries(typeCountData).map(([type, count]) => ({ type, count }))
 const totalTypes = d3.sum(entries, d => d.count)
 
-const BASE_WT = BASE_W
-const BASE_HT = 480
+// const BASE_WT = 3500
+// const BASE_HT = 1600
+const BASE_WT = 1300
+const BASE_HT = 700
 const marginT = { top: 10, right: MARGIN_R, bottom: 20, left: MARGIN_L }
 
 const svgT = d3.select('#type-count-chart')
@@ -392,7 +394,7 @@ svg3.selectAll('rect')
   .attr('y', d => y3(d.count))
   .attr('width', x3.bandwidth())
   .attr('height', d => y3(0) - y3(d.count))
-  .attr('fill', '#357cff')
+  .attr('fill', '#8ab3ffff')
 
 // Courbe du nombre de lieux
 
@@ -411,8 +413,8 @@ const yPlaces = d3.scaleLinear()
 svg3.append('g')
   .attr('transform', `translate(${BASE_W3 - margin3.right}, 0)`)
   .call(d3.axisRight(yPlaces).ticks(5))
-  .call(g => g.selectAll('text').attr('fill', '#ff5353ff'))
-  .call(g => g.selectAll('path,line').attr('stroke', '#ff5353ff'))
+  .call(g => g.selectAll('text').attr('fill', '#357cff'))
+  .call(g => g.selectAll('path,line').attr('stroke', '#357cff'))
 
 // Génération ligne
 const linePlaces = d3.line()
@@ -422,7 +424,7 @@ const linePlaces = d3.line()
 svg3.append('path')
   .datum(placesByRegion)
   .attr('fill', 'none')
-  .attr('stroke', '#ff5353ff')
+  .attr('stroke', '#357cff')
   .attr('stroke-width', 2)
   .attr('d', linePlaces)
 
@@ -434,7 +436,7 @@ svg3.selectAll('.place-dot')
   .attr('cx', d => x3(d.region) + x3.bandwidth() / 2)
   .attr('cy', d => yPlaces(d.places))
   .attr('r', 4)
-  .attr('fill', '#ff5353ff')
+  .attr('fill', '#357cff')
   .attr('stroke-width', 1)
 
 // Légende 
@@ -444,7 +446,7 @@ const legend3 = svg3.append('g')
 legend3.append('rect')
   .attr('x', 0).attr('y', -10)
   .attr('width', 12).attr('height', 12)
-  .attr('fill', '#357cff')
+  .attr('fill', '#8ab3ffff')
 
 legend3.append('text')
   .attr('x', 18).attr('y', 0)
@@ -455,7 +457,7 @@ legend3.append('text')
 legend3.append('line')
   .attr('x1', 120).attr('x2', 150)
   .attr('y1', -4).attr('y2', -4)
-  .attr('stroke', '#ff5353ff')
+  .attr('stroke', '#357cff')
   .attr('stroke-width', 2)
 
 legend3.append('text')

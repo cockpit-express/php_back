@@ -14,9 +14,9 @@
 
     <li><a href="./a-propos">A propos</a></li>
 
-    <div class="separator-box">
+    <!-- <div class="separator-box">
       <span></span>
-    </div>
-    <li><span class="material-symbols-outlined">dark_mode</span></li>
+    </div> -->
+    <!-- <li><span class="material-symbols-outlined">dark_mode</span></li> -->
   </ul>
 </nav>
