@@ -637,6 +637,12 @@ button {
 .about-sec h4, .about-sec h1, .about-sec p {
   margin: 0px;
 }
+.about-sec li {
+  margin-bottom: 10px;
+}
+.about-sec b {
+  font-weight: 550;
+}
 .about-sec header {
   text-align: center;
   margin: 120px 0px 70px 0px;
@@ -645,6 +651,9 @@ button {
   flex-direction: column;
   gap: 20px;
   padding: 30px 15vw;
+  color: #357cff;
+}
+.about-sec header a {
   color: #357cff;
 }
 .about-sec header h1 {
@@ -658,6 +667,14 @@ button {
 }
 .about-sec .articles {
   padding: 0px 15vw;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.about-sec .articles a {
+  color: #4e4e4e;
+}
+.about-sec .article {
   display: flex;
   flex-direction: column;
   gap: 20px;

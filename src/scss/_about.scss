@@ -7,6 +7,14 @@
     margin: 0px;
   }
 
+  li {
+    margin-bottom: 10px;
+  }
+
+  b {
+    font-weight: 550;
+  }
+
   header {
     text-align: center;
     margin: 120px 0px 70px 0px;
@@ -16,6 +24,10 @@
     gap: 20px;
     padding: 30px 15vw;
     color: #357cff;
+
+    a {
+      color: #357cff;
+    }
 
     h1 {
       font-size: 22px;
@@ -31,6 +43,16 @@
 
   .articles {
     padding: 0px 15vw;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    a {
+      color: #4e4e4e;
+    }
+  }
+
+  .article {
     display: flex;
     flex-direction: column;
     gap: 20px;

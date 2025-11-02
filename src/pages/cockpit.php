@@ -39,17 +39,17 @@
           <span class="material-symbols-outlined">arrow_outward</span>
         </a>
         , 
-        <a href="#" target="_blank">
+        <a href="http://mmi24a04.mmi-troyes.fr/portfolio/" target="_blank">
           <span>Valentin Babic</span>
           <span class="material-symbols-outlined">arrow_outward</span>
         </a>
         , 
-        <a href="#" target="_blank">
+        <a href="https://www.linkedin.com/in/tristan-legrand-280339351" target="_blank">
           <span>Tristan Legrand</span>
           <span class="material-symbols-outlined">arrow_outward</span>
         </a> 
         et 
-        <a href="#" target="_blank">
+        <a href="https://www.linkedin.com/in/thomas-hervet-6235a6395/" target="_blank">
           <span>Thomas Hervé</span>
           <span class="material-symbols-outlined">arrow_outward</span>
         </a>
