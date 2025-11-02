@@ -45,7 +45,7 @@
           <div class="article">
             <h4>Origine des données</h4>
 
-            <p>Les données analysées proviennent de datasets issus de l’open data. Deux d’entre eux ont été mis à contribution dans ce projet : <a href="https://defis.data.gouv.fr/datasets/65d81858179dc96581d981db" target="_blank">les gares de voyageurs en France</a> (SNCF, 2.769 entrées) ainsi que <a href="https://defis.data.gouv.fr/datasets/61777ddaa9101d073e5506cd" target="_blank">la base des lieux et équipement culturels</a> (Ministère de la Culture, 88.037 entrées). </p>
+            <p>Les données analysées proviennent de datasets issus de l’open data. Deux d’entre eux ont été mis à contribution dans ce projet : <a href="https://defis.data.gouv.fr/datasets/65d81858179dc96581d981db" target="_blank">les gares de voyageurs en France</a> (SNCF, 2.769 entrées) ainsi que <a href="https://defis.data.gouv.fr/datasets/61777ddaa9101d073e5506cd" target="_blank">la base des lieux et équipements culturels</a> (Ministère de la Culture, 88.037 entrées). </p>
           </div>
           
           <div class="article">
