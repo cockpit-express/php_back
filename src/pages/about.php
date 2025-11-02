@@ -53,9 +53,9 @@
 
             <p>Les datasets, initialement en format XLXS et/ou CSV, ont été entrés dans une base de données SQL, afin de pouvoir construire une API propre et de proposer des requêtes HTTP fluides.</p>
 
-            <p>Les données ont été nettoyés avant leur entrée en base de données. Ainsi, les stations (gares) comportent 5 champs (initialement 6) : id, name, latitude, longitude, postal_code. Les places (lieux culturels) en comportent 11 (initialement 55) : id, name, address, postal_code, type, label, attitude, longitude, region_code, departement_code.</p>
+            <p>Les données ont été nettoyées avant leur entrée en base de données. Ainsi, les stations (gares) comportent 5 champs (initialement 6) : id, name, latitude, longitude, postal_code. Les places (lieux culturels) en comportent 11 (initialement 55) : id, name, address, postal_code, type, label, attitude, longitude, region_code, departement_code.</p>
             
-            <p>Cependant, parmi les quelques 88.000 lieux et équipement culturels, beaucoup ne sont pas pertinents pour les utilisateur de notre projet. Nous avons donc décidé de créer un algorithme de tri : nous avons éliminé certaines catégories de lieux (par exemple les établissements d’enseignement supérieurs et les librairies) et filtré le nom des lieux appartenants à la catégorie "monument" via un système de mots clés (par exemple, les éléments contenant dans leur nom "cathédrale", "citadelle", "phare" ou encore "beffroi" sont gardés d’emblée, tandis que ceux contenant par exemple "fontaine", "cimetière", "puit" ou encore "borne" sont éliminés).</p>
+            <p>Cependant, parmi les quelques 88.000 lieux et équipements culturels, beaucoup ne sont pas pertinents pour les utilisateurs de notre projet. Nous avons donc décidé de créer un algorithme de tri : nous avons éliminé certaines catégories de lieux (par exemple les établissements d’enseignement supérieurs et les librairies) et filtré le nom des lieux appartenants à la catégorie "monument" via un système de mots clés (par exemple, les éléments contenant dans leur nom "cathédrale", "citadelle", "phare" ou encore "beffroi" sont gardés d’emblée, tandis que ceux contenant par exemple "fontaine", "cimetière", "puit" ou encore "borne" sont éliminés).</p>
           
             <p>Au final, grâce à un script PHP réalisant ces actions, nous avons conservé environ 16.000 lieux culturels jugés pertinents.</p>
           </div>
@@ -75,7 +75,7 @@
           <div class="article">
             <h4>Elaboration du cockpit interactif</h4>
 
-            <p>Le cockpit interactif utilise la bibliothèqu JS <a href="https://leafletjs.com/" target="_blank">Leaflet</a> pour la carte interactive, et <a href="https://d3js.org/" target="_blank">d3js</a> pour les graphiques (utilisé également sur la page <a href="https://ws303d.mmi24c16.mmi-troyes.fr/data" target="_blank">cockpit.io/data</a>). Les images utilisées pour illustrer les sites culturels proviennent de l’API de <a href="https://www.wikimedia.org/" target="_blank">Wikimedia</a> (accès libre à l’API). A noter que les tuiles de la carte interactive proviennent de <a href="https://www.thunderforest.com/maps/pioneer/" target="_blank">la carte Pioneer de Thunderforest</a>.</p>
+            <p>Le cockpit interactif utilise la bibliothèque JS <a href="https://leafletjs.com/" target="_blank">Leaflet</a> pour la carte interactive, et <a href="https://d3js.org/" target="_blank">d3js</a> pour les graphiques (utilisé également sur la page <a href="https://ws303d.mmi24c16.mmi-troyes.fr/data" target="_blank">cockpit.io/data</a>). Les images utilisées pour illustrer les sites culturels proviennent de l’API de <a href="https://www.wikimedia.org/" target="_blank">Wikimedia</a> (accès libre à l’API). A noter que les tuiles de la carte interactive proviennent de <a href="https://www.thunderforest.com/maps/pioneer/" target="_blank">la carte Pioneer de Thunderforest</a>.</p>
           </div>
         </div>
 
