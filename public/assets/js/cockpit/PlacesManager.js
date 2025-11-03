@@ -47,7 +47,7 @@ export class PlacesManager {
     this.DOM.windshield.containers.contentSubBox.style.display = 'flex'
     this.DOM.placesList.containers.cardsBox.innerHTML = ''
 
-// Partie graphique à retraivailler et à changer de place 
+// ### PARTIE GRAPHIQUE A RETRAVAILLER ET A CHANGER DE PLACE ###
 
     const chartDiv = document.createElement('div')
     chartDiv.classList.add('place-card')
@@ -71,126 +71,128 @@ export class PlacesManager {
       `
     )
 
-  const svgChart = d3.select('#places-by-distance-to-station')
-  svgChart.selectAll('*').remove()
+    const svgChart = d3.select('#places-by-distance-to-station')
+    svgChart.selectAll('*').remove()
 
-  // --- Dimensions & mise à l'échelle responsive via viewBox ---
-  const WIDTH = 800, HEIGHT = 485
-  const margin = { top: 20, right: 40, bottom: 40, left: 40 }
-  const innerW = WIDTH - margin.left - margin.right
-  const innerH = HEIGHT - margin.top - margin.bottom
-  svgChart.attr('viewBox', `0 0 ${WIDTH} ${HEIGHT}`).attr('preserveAspectRatio', 'xMidYMid meet')
+    // Dimensions & echelle
+    const WIDTH = 800, HEIGHT = 485
+    const margin = { top: 20, right: 40, bottom: 40, left: 40 }
+    const innerW = WIDTH - margin.left - margin.right
+    const innerH = HEIGHT - margin.top - margin.bottom
 
-  const g = svgChart.append('g').attr('transform', `translate(${margin.left},${margin.top})`)
+    svgChart.attr('viewBox', `0 0 ${WIDTH} ${HEIGHT}`).attr('preserveAspectRatio', 'xMidYMid meet')
 
-  // --- Calcul km formule ---
-  const toRad = d => (d * Math.PI) / 180
-  const distanceKm = (lat1, lon1, lat2, lon2) => {
-    const R = 6371; 
-    const dLat = toRad(lat2 - lat1)
-    const dLon = toRad(lon2 - lon1)
-    const a =
-      Math.sin(dLat / 2) ** 2 +
-      Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
-    return R * c
-  }
+    const g = svgChart.append('g').attr('transform', `translate(${margin.left},${margin.top})`)
 
-  // --- Distances ---
-  const distances = places
-    .filter(p => Number.isFinite(p.latitude) && Number.isFinite(p.longitude))
-    .map(p => distanceKm(stationData.latitude, stationData.longitude, p.latitude, p.longitude))
+    // Formule coos
+    const toRad = d => (d * Math.PI) / 180
+    const distanceKm = (lat1, lon1, lat2, lon2) => {
+      const R = 6371
+      const dLat = toRad(lat2 - lat1)
+      const dLon = toRad(lon2 - lon1)
+      const a =
+        Math.sin(dLat / 2) ** 2 +
+        Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+      return R * c
+    }
 
-  if (distances.length === 0) {
-    g.append('text')
-      .attr('x', innerW / 2)
-      .attr('y', innerH / 2)
-      .attr('text-anchor', 'middle')
-      .text("Aucune donnée")
-    return
-  }
+    // Distances
+    const distances = places
+      .filter(p => Number.isFinite(p.latitude) && Number.isFinite(p.longitude))
+      .map(p => distanceKm(stationData.latitude, stationData.longitude, p.latitude, p.longitude))
 
-  // --- Groupement par kilomètres entiers ---
-const maxD = d3.max(distances) || 0
-const maxKm = Math.max(1, Math.ceil(maxD))
+    if (distances.length === 0) {
+      g.append('text')
+        .attr('x', innerW / 2)
+        .attr('y', innerH / 2)
+        .attr('text-anchor', 'middle')
+        .text("Aucune donnée")
+      return
+    }
 
-// Compte des lieux par km entier
-const byKm = d3.rollup(
-  distances,
-  v => v.length,
-  d => Math.floor(d)
-)
+    // Groupement par km
+    const maxD = d3.max(distances) || 0
+    const maxKm = Math.max(1, Math.ceil(maxD))
 
-const data = d3.range(0, maxKm + 1).map(k => ({
-  x: k,                
-  y: byKm.get(k) || 0, 
-  x0: k,
-  x1: k + 1
-}))
+    // Compte des lieux par km entier
+    const byKm = d3.rollup(
+      distances,
+      v => v.length,
+      d => Math.floor(d)
+    )
 
-// --- Échelles ---
-const xScale = d3.scaleLinear()
-  .domain([0, maxKm])  
-  .range([0, innerW])
+    const data = d3.range(0, maxKm + 1).map(k => ({
+      x: k,                
+      y: byKm.get(k) || 0, 
+      x0: k,
+      x1: k + 1
+    }))
 
-const yScale = d3.scaleLinear()
-  .domain([0, d3.max(data, d => d.y) || 1])
-  .nice()
-  .range([innerH, 0])
+    // Échelles
+    const xScale = d3.scaleLinear()
+      .domain([0, maxKm])  
+      .range([0, innerW])
 
-// --- Grille Y 
-g.append('g')
-  .attr('class', 'grid')
-  .call(d3.axisLeft(yScale).tickSize(-innerW).tickFormat(''))
-  .selectAll('line').attr('stroke-opacity', 0.15)
+    const yScale = d3.scaleLinear()
+      .domain([0, d3.max(data, d => d.y) || 1])
+      .nice()
+      .range([innerH, 0])
 
-// --- Axe X : 1 tick par km entier
-const xAxis = d3.axisBottom(xScale)
-  .tickValues(d3.range(0, maxKm + 1))
-  .tickFormat(d => `${d} km`)
+    // Grille Y 
+    g.append('g')
+      .attr('class', 'grid')
+      .call(d3.axisLeft(yScale).tickSize(-innerW).tickFormat(''))
+      .selectAll('line').attr('stroke-opacity', 0.15)
 
-g.append('g')
-  .attr('transform', `translate(0,${innerH})`)
-  .call(xAxis)
-  .selectAll('text')
-  .style('font-size', '25px')
-  .selectAll('path, line')
-  .attr('stroke-width', 3)
+    // Axe X
+    const xAxis = d3.axisBottom(xScale)
+      .tickValues(d3.range(0, maxKm + 1))
+      .tickFormat(d => `${d} km`)
 
-// --- Axe Y 
-const yAxis = d3.axisLeft(yScale).ticks(6)
+    g.append('g')
+      .attr('transform', `translate(0,${innerH})`)
+      .call(xAxis)
+      .selectAll('text')
+      .style('font-size', '25px')
+      .selectAll('path, line')
+      .attr('stroke-width', 3)
 
-g.append('g')
-  .call(yAxis)
-  .selectAll('text')
-  .style('font-size', '25px')
-  .selectAll('path, line')
-  .attr('stroke-width', 4)
+    // Axe Y 
+    const yAxis = d3.axisLeft(yScale).ticks(6)
 
-// --- Courbe segments droits
-const line = d3.line()
-  .x(d => xScale(d.x))
-  .y(d => yScale(d.y))
-  .curve(d3.curveLinear)
+    g.append('g')
+      .call(yAxis)
+      .selectAll('text')
+      .style('font-size', '25px')
+      .selectAll('path, line')
+      .attr('stroke-width', 4)
 
-g.append('path')
-  .datum(data)
-  .attr('fill', 'none')
-  .attr('stroke', '#357cff')
-  .attr('stroke-width', 4)
-  .attr('d', line);
+    // Courbe segments droits
+    const line = d3.line()
+      .x(d => xScale(d.x))
+      .y(d => yScale(d.y))
+      .curve(d3.curveLinear)
 
-// --- Points 
-g.selectAll('.pt')
-  .data(data)
-  .enter()
-  .append('circle')
-  .attr('class', 'pt')
-  .attr('cx', d => xScale(d.x))
-  .attr('cy', d => yScale(d.y))
-  .attr('r', 8)
-  .attr('fill', '#357cff');
+    g.append('path')
+      .datum(data)
+      .attr('fill', 'none')
+      .attr('stroke', '#357cff')
+      .attr('stroke-width', 4)
+      .attr('d', line)
 
+    // Points
+    g.selectAll('.pt')
+      .data(data)
+      .enter()
+      .append('circle')
+      .attr('class', 'pt')
+      .attr('cx', d => xScale(d.x))
+      .attr('cy', d => yScale(d.y))
+      .attr('r', 8)
+      .attr('fill', '#357cff')
+
+// ### ###
   }
 
   async loadPlacesWithMedia(places, placesWithoutMedia) {
